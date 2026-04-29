@@ -1,0 +1,1650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>PROM-BPR</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    
+    <style>
+        #pylode {
+            position: fixed;
+            top: 130px;
+            left: -60px;
+            font-size: small;
+            transform: rotate(-90deg);
+            color: grey;
+        }
+        #pylode a {
+            font-size: 2em;
+            font-weight: bold;
+            text-decoration: none;
+            color: #005A9C;
+        }
+        #pylode a:hover {
+            color: #333;
+        }
+
+        .cardinality {
+            font-style: italic;
+            color: #aa00aa;
+        }
+
+        dt {
+            font-weight: bold;
+            padding: 5px 0 5px 0;
+        }
+
+        ul.hlist {
+            list-style-type: none;
+            border: 1px solid navy;
+            padding:5px;
+            background-color: #F4FFFF;
+        }
+
+        ul.hierarchy {
+            border: 1px solid navy;
+            padding: 5px 25px 5px 25px;
+            background-color: #F4FFFF;
+        }
+
+
+        ul.hlist li {
+            display: inline;
+            margin-right: 10px;
+        }
+
+        .entity {
+            border: 1px solid navy;
+            margin:5px 0 5px 0;
+            padding: 5px;
+        }
+
+        .entity th {
+            width: 150px;
+            vertical-align: top;
+        }
+
+        .entity th,
+        .entity td {
+            padding-bottom: 20px;
+        }
+
+        .entity table th {
+            text-align: left;
+        }
+
+        section#overview img {
+            max-width: 1000px;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            text-align: left
+        }
+        h1, h2, h3 {
+            color: #005A9C; background: white
+        }
+        h1 {
+            font: 170% sans-serif;
+            line-height: 110%;
+        }
+        h2 {
+            font: 140% sans-serif;
+            margin-top:40px;
+        }
+        h3 {
+            font: 120% sans-serif;
+            margin-top: 3px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid navy;
+        }
+        h4 { font: bold 100% sans-serif }
+        h5 { font: italic 100% sans-serif }
+        h6 { font: small-caps 100% sans-serif }
+
+
+        body {
+            padding: 2em 70px 2em 70px;
+            margin: 0;
+            font-family: sans-serif;
+            color: black;
+            background: white;
+            background-position: top left;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            text-align: justify;
+        }
+
+        section {
+            max-width: 1500px;
+        }
+
+        .figure {
+            margin-bottom: 20px;
+        }
+
+        :link { color: #00C; background: transparent }
+        :visited { color: #609; background: transparent }
+        a:active { color: #C00; background: transparent }
+
+        .sup-c,
+        .sup-op,
+        .sup-fp,
+        .sup-dp,
+        .sup-ap,
+        .sup-p,
+        .sup-ni,
+        .sup-cp,
+        .sup-cl {
+            cursor:help;
+            margin-left: 3px;
+        }
+
+        .sup-c {
+            color:orange;
+        }
+
+        .sup-op {
+            color:navy;
+        }
+
+        .sup-fp {
+            color:lightskyblue;
+        }
+
+        .sup-dp {
+            color:green;
+        }
+
+        .sup-ap {
+            color:darkred;
+        }
+
+        .sup-p {
+            color:black;
+        }
+
+        .sup-ni {
+            color:brown;
+        }
+
+        .sup-cp {
+            color:orange;
+        }
+
+        .sup-cl {
+            color:darkred;
+        }
+
+        code {
+            font-size: large;
+            color: darkred;
+        }
+
+    </style>
+    
+    <script type="application/ld+json">
+      [
+  {
+    "@id": "https://w3id.org/prom-bpr",
+    "@type": [
+      "https://schema.org/DefinedTermSet"
+    ],
+    "https://schema.org/description": [
+      {
+        "@value": "<p>PROM-BPR provides a reference process model for building permit review processes, capturing the key activities, their sequence, and dependencies for implementing process mining approaches. Furthermore, it contains classes for representing event log entries, unclassified event log entries, and event log compounds. The prefix of the ontology is <code>prom-bpr:</code>. The process model consists of three main phases: <code>prom-bpr:A_1_PrePhase</code>, <code>prom-bpr:A_2_ReviewPhase</code>, and <code>prom-bpr:A_3_PostPhase</code>. The ontology extends <code>ontobpr:</code> and utilizes <code>prov:</code>.</p>"
+      }
+    ],
+    "https://schema.org/name": [
+      {
+        "@value": "PROM-BPR"
+      }
+    ]
+  }
+]
+    </script>
+</head>
+<body>
+  <div id="pylode">made by <a href="http://github.com/rdflib/pyLODE">
+    <span style="color:#329545;">p</span><span style="color:#f9cb33;">y</span>LODE</a>
+    <span style="font-size:smaller;">2.4</span>
+  </div>
+  <h1>PROM-BPR</h1>
+<section id="metadata">
+    <h2 style="display:none;">Metadata</h2>
+    <dl>
+        <dt>IRI</dt>
+        <dd><code>https://w3id.org/prom-bpr</code></dd>
+        <dt>Creator(s)</dt>
+        <dd>
+            
+    <a href="https://orcid.org/0000-0002-6249-243X">Dr. Philipp Hagedorn</a>
+    <a href="https://orcid.org/0000-0002-6249-243X"><svg width="15px" height="15px" viewBox="0 0 72 72" version="1.1"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Orcid logo</title>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="hero" transform="translate(-924.000000, -72.000000)" fill-rule="nonzero">
+            <g id="Group-4">
+                <g id="vector_iD_icon" transform="translate(924.000000, 72.000000)">
+                    <path d="M72,36 C72,55.884375 55.884375,72 36,72 C16.115625,72 0,55.884375 0,36 C0,16.115625 16.115625,0 36,0 C55.884375,0 72,16.115625 72,36 Z" id="Path" fill="#A6CE39"></path>
+                    <g id="Group" transform="translate(18.868966, 12.910345)" fill="#FFFFFF">
+                        <polygon id="Path" points="5.03734929 39.1250878 0.695429861 39.1250878 0.695429861 9.14431787 5.03734929 9.14431787 5.03734929 22.6930505 5.03734929 39.1250878"></polygon>
+                        <path d="M11.409257,9.14431787 L23.1380784,9.14431787 C34.303014,9.14431787 39.2088191,17.0664074 39.2088191,24.1486995 C39.2088191,31.846843 33.1470485,39.1530811 23.1944669,39.1530811 L11.409257,39.1530811 L11.409257,9.14431787 Z M15.7511765,35.2620194 L22.6587756,35.2620194 C32.49858,35.2620194 34.7541226,27.8438084 34.7541226,24.1486995 C34.7541226,18.1301509 30.8915059,13.0353795 22.4332213,13.0353795 L15.7511765,13.0353795 L15.7511765,35.2620194 Z" id="Shape"></path>
+                        <path d="M5.71401206,2.90182329 C5.71401206,4.441452 4.44526937,5.72914146 2.86638958,5.72914146 C1.28750978,5.72914146 0.0187670918,4.441452 0.0187670918,2.90182329 C0.0187670918,1.33420133 1.28750978,0.0745051096 2.86638958,0.0745051096 C4.44526937,0.0745051096 5.71401206,1.36219458 5.71401206,2.90182329 Z" id="Path"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg></a>
+    (<a href="mailto:philipp.hagedorn-n6v@rub.de">philipp.hagedorn-n6v@rub.de</a>) of 
+    <a href="https://www.inf.bi.ruhr-uni-bochum.de/iib/lehrstuhl/mitarbeiter/philipp_hagedorn.html.en">Ruhr University Bochum, DE</a><br/>
+            
+    <a href="https://orcid.org/0000-0002-9078-8393">Dr. Judith Fauth</a>
+    <a href="https://orcid.org/0000-0002-9078-8393"><svg width="15px" height="15px" viewBox="0 0 72 72" version="1.1"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Orcid logo</title>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="hero" transform="translate(-924.000000, -72.000000)" fill-rule="nonzero">
+            <g id="Group-4">
+                <g id="vector_iD_icon" transform="translate(924.000000, 72.000000)">
+                    <path d="M72,36 C72,55.884375 55.884375,72 36,72 C16.115625,72 0,55.884375 0,36 C0,16.115625 16.115625,0 36,0 C55.884375,0 72,16.115625 72,36 Z" id="Path" fill="#A6CE39"></path>
+                    <g id="Group" transform="translate(18.868966, 12.910345)" fill="#FFFFFF">
+                        <polygon id="Path" points="5.03734929 39.1250878 0.695429861 39.1250878 0.695429861 9.14431787 5.03734929 9.14431787 5.03734929 22.6930505 5.03734929 39.1250878"></polygon>
+                        <path d="M11.409257,9.14431787 L23.1380784,9.14431787 C34.303014,9.14431787 39.2088191,17.0664074 39.2088191,24.1486995 C39.2088191,31.846843 33.1470485,39.1530811 23.1944669,39.1530811 L11.409257,39.1530811 L11.409257,9.14431787 Z M15.7511765,35.2620194 L22.6587756,35.2620194 C32.49858,35.2620194 34.7541226,27.8438084 34.7541226,24.1486995 C34.7541226,18.1301509 30.8915059,13.0353795 22.4332213,13.0353795 L15.7511765,13.0353795 L15.7511765,35.2620194 Z" id="Shape"></path>
+                        <path d="M5.71401206,2.90182329 C5.71401206,4.441452 4.44526937,5.72914146 2.86638958,5.72914146 C1.28750978,5.72914146 0.0187670918,4.441452 0.0187670918,2.90182329 C0.0187670918,1.33420133 1.28750978,0.0745051096 2.86638958,0.0745051096 C4.44526937,0.0745051096 5.71401206,1.36219458 5.71401206,2.90182329 Z" id="Path"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg></a>
+    (<a href="mailto:judith.fauth@rub.de">judith.fauth@rub.de</a>) of 
+    <a href="https://www.linkedin.com/in/judith-fauth-5b5137bb">Technical University of Munich, DE</a><br/>
+            
+    <a href="https://orcid.org/0009-0003-6827-0154">Prof. Dr. Ronny Weinkauf</a>
+    <a href="https://orcid.org/0009-0003-6827-0154"><svg width="15px" height="15px" viewBox="0 0 72 72" version="1.1"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Orcid logo</title>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="hero" transform="translate(-924.000000, -72.000000)" fill-rule="nonzero">
+            <g id="Group-4">
+                <g id="vector_iD_icon" transform="translate(924.000000, 72.000000)">
+                    <path d="M72,36 C72,55.884375 55.884375,72 36,72 C16.115625,72 0,55.884375 0,36 C0,16.115625 16.115625,0 36,0 C55.884375,0 72,16.115625 72,36 Z" id="Path" fill="#A6CE39"></path>
+                    <g id="Group" transform="translate(18.868966, 12.910345)" fill="#FFFFFF">
+                        <polygon id="Path" points="5.03734929 39.1250878 0.695429861 39.1250878 0.695429861 9.14431787 5.03734929 9.14431787 5.03734929 22.6930505 5.03734929 39.1250878"></polygon>
+                        <path d="M11.409257,9.14431787 L23.1380784,9.14431787 C34.303014,9.14431787 39.2088191,17.0664074 39.2088191,24.1486995 C39.2088191,31.846843 33.1470485,39.1530811 23.1944669,39.1530811 L11.409257,39.1530811 L11.409257,9.14431787 Z M15.7511765,35.2620194 L22.6587756,35.2620194 C32.49858,35.2620194 34.7541226,27.8438084 34.7541226,24.1486995 C34.7541226,18.1301509 30.8915059,13.0353795 22.4332213,13.0353795 L15.7511765,13.0353795 L15.7511765,35.2620194 Z" id="Shape"></path>
+                        <path d="M5.71401206,2.90182329 C5.71401206,4.441452 4.44526937,5.72914146 2.86638958,5.72914146 C1.28750978,5.72914146 0.0187670918,4.441452 0.0187670918,2.90182329 C0.0187670918,1.33420133 1.28750978,0.0745051096 2.86638958,0.0745051096 C4.44526937,0.0745051096 5.71401206,1.36219458 5.71401206,2.90182329 Z" id="Path"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg></a>
+    (<a href="mailto:ronny.weinkauf@hs-merseburg.de">ronny.weinkauf@hs-merseburg.de</a>) of 
+    <a href="https://www.hs-merseburg.de/hochschule/information/personenverzeichnis/details/person/weinkauf-ronny-613/">Merseburg University of Applied Sciences, DE</a><br/>
+        </dd>
+        <dt>Imports</dt>
+        <dd>
+            <a href="http://www.w3.org/ns/prov-o#">http://www.w3.org/ns/prov-o#</a><br/>
+            <a href="https://w3id.org/ontobpr">https://w3id.org/ontobpr</a><br/>
+        </dd>
+        <dt>Ontology RDF</dt>
+        <dd><a href="prom-bpr.ttl">RDF (turtle)</a></dd>
+    </dl>
+    <h2>Description</h2>
+    <div id="description">
+        <p>PROM-BPR provides a reference process model for building permit review processes, capturing the key activities, their sequence, and dependencies for implementing process mining approaches. Furthermore, it contains classes for representing event log entries, unclassified event log entries, and event log compounds. The prefix of the ontology is <code>prom-bpr:</code>. The process model consists of three main phases: <code>prom-bpr:A_1_PrePhase</code>, <code>prom-bpr:A_2_ReviewPhase</code>, and <code>prom-bpr:A_3_PostPhase</code>. The ontology extends <code>ontobpr:</code> and utilizes <code>prov:</code>.</p>
+    </div>
+</section>
+<section id="toc">
+    <h2>Table of Contents</h2>
+    <ol>
+        <li><a href="#classes">Classes</a></li>
+        <li><a href="#objectproperties">Object Properties</a></li>
+        <li><a href="#namespaces">Namespaces</a></li>
+        <li><a href="#legend">Legend</a></li>
+    </ol>
+</section>
+  <section id="classes">
+    <h2>Classes <span style="float:right; font-size:smaller;"><a href="">&uparrow;</a></span></h2>
+    <ul class="hlist">
+        <li><a href="#Administrativecheck">Administrative check</a></li>
+        <li><a href="#Applicantpresentsbuildingapplication">Applicant presents building application</a></li>
+        <li><a href="#Archiving">Archiving</a></li>
+        <li><a href="#Assignment(toplanchecker)">Assignment (to plan checker)</a></li>
+        <li><a href="#Building/technicalreview">Building / technical review</a></li>
+        <li><a href="#Buildingcommitteemeeting">Building committee meeting</a></li>
+        <li><a href="#Checkparticipationstatements">Check participation statements</a></li>
+        <li><a href="#Checkstamps,payment">Check stamps, payment</a></li>
+        <li><a href="#Check/requestpaymentoftaxesandfees">Check/ request payment of taxes and fees</a></li>
+        <li><a href="#Compileapplicationrequestrequirementlist">Compile application request requirement list</a></li>
+        <li><a href="#Completenesscheck">Completeness check</a></li>
+        <li><a href="#Completingdocumentation">Completing documentation</a></li>
+        <li><a href="#Constructioncompletion(notification)">Construction completion (notification)</a></li>
+        <li><a href="#Constructionlawreview">Construction law review</a></li>
+        <li><a href="#Consultationwithapplicant">Consultation with applicant</a></li>
+        <li><a href="#Contentcheck">Content check</a></li>
+        <li><a href="#A_2_5_ContentCheck">Content check</a></li>
+        <li><a href="#Eventlogcompund">Event log compund</a></li>
+        <li><a href="#Eventlogentry">Event log entry</a></li>
+        <li><a href="#Firerevisionexamination">Fire revision examination</a></li>
+        <li><a href="#Importapplicationintoapublicadministrationsoftware">Import application into a public administration software</a></li>
+        <li><a href="#Internaldiscussion">Internal discussion</a></li>
+        <li><a href="#Internalreferraldepartmentparticipation">Internal referral department participation</a></li>
+        <li><a href="#InvolvementofreviewBoard">Involvement of review Board</a></li>
+        <li><a href="#Issuanceofcompletioncertificate(occupancypermit)">Issuance of completion certificate (occupancy permit)</a></li>
+        <li><a href="#Issuenotificationletterforconstructionstart">Issue notification letter for construction start</a></li>
+        <li><a href="#Issuingnotificationletter">Issuing notification letter </a></li>
+        <li><a href="#Mechanicalplanexamination">Mechanical plan examination</a></li>
+        <li><a href="#Meetingwithsupervisor">Meeting with supervisor</a></li>
+        <li><a href="#Neighbourparticipation">Neighbour participation</a></li>
+        <li><a href="#Obtainapprovaloftheconstructionconformity">Obtain approval of the construction conformity</a></li>
+        <li><a href="#Obtainsitevaliditycertificates">Obtain site validity certificates</a></li>
+        <li><a href="#Participationbyapplicant-collectAssessstatements">Participation by applicant - collect & Assess statements</a></li>
+        <li><a href="#Participationofotheragencies">Participation of other agencies</a></li>
+        <li><a href="#Participationofpublic">Participation of public</a></li>
+        <li><a href="#Planning/zoningreview">Planning / zoning review</a></li>
+        <li><a href="#Postphase">Post phase</a></li>
+        <li><a href="#PreConsultation">Pre Consultation</a></li>
+        <li><a href="#PrePhase">Pre Phase</a></li>
+        <li><a href="#Preparetechnicalreport">Prepare technical report</a></li>
+        <li><a href="#Privateagenciesparticipation">Private agencies participation</a></li>
+        <li><a href="#Propertyconditioncheck">Property condition check</a></li>
+        <li><a href="#Publicagenciesparticipation">Public agencies participation</a></li>
+        <li><a href="#Publicinquiry">Public inquiry</a></li>
+        <li><a href="#Receivesubmission">Receive submission</a></li>
+        <li><a href="#Recommendationtostatutoryplanningcommittee(SPC)">Recommendation to statutory planning committee (SPC)</a></li>
+        <li><a href="#Registrationofapplication">Registration of application</a></li>
+        <li><a href="#Requestfurtherdocuments(ifneeded)">Request further documents (if needed)</a></li>
+        <li><a href="#Reviewphase">Review phase</a></li>
+        <li><a href="#Reviewplanningpolicies(bytownplanningcommittee)">Review planning policies (by town planning committee)</a></li>
+        <li><a href="#Securitycommission">Security commission</a></li>
+        <li><a href="#SiteInspection">Site Inspection</a></li>
+        <li><a href="#Submissionofdocuments">Submission of documents</a></li>
+        <li><a href="#Submitconstructionconformitycertificate">Submit construction conformity certificate</a></li>
+        <li><a href="#Unclassifiedeventlogentry">Unclassified event log entry</a></li>
+        <li><a href="#Zoningreviewprocessbyapplicant">Zoning review process by applicant</a></li>
+    </ul>
+    <div class="entity class" id="Obtainsitevaliditycertificates">
+        <h3>Obtain site validity certificates<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_1_1_1_ObtainSiteValidityCertificates</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#PreConsultation">prom-bpr:A_1_1_PreConsultation</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Participationbyapplicant-collectAssessstatements">
+        <h3>Participation by applicant - collect & Assess statements<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_1_1_2_ParticipationByApplicant</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#PreConsultation">prom-bpr:A_1_1_PreConsultation</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Restrictions</th>
+                <td>
+                    <a href="https://w3id.org/ontobpr#afterActivity">https://w3id.org/ontobpr#afterActivity</a><sup class="sup-op" title="object property">op</sup> <span class="cardinality">exactly</span> 1 <a href="#Obtainsitevaliditycertificates">prom-bpr:A_1_1_1_ObtainSiteValidityCertificates</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Compileapplicationrequestrequirementlist">
+        <h3>Compile application request requirement list<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_1_1_3_CompileApplicationRequestRequirementList</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#PreConsultation">prom-bpr:A_1_1_PreConsultation</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Restrictions</th>
+                <td>
+                    <a href="https://w3id.org/ontobpr#afterActivity">https://w3id.org/ontobpr#afterActivity</a><sup class="sup-op" title="object property">op</sup> <span class="cardinality">exactly</span> 1 <a href="#Participationbyapplicant-collectAssessstatements">prom-bpr:A_1_1_2_ParticipationByApplicant</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Zoningreviewprocessbyapplicant">
+        <h3>Zoning review process by applicant<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_1_1_4_ZoningReviewApplicant</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#PreConsultation">prom-bpr:A_1_1_PreConsultation</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Restrictions</th>
+                <td>
+                    <a href="https://w3id.org/ontobpr#afterActivity">https://w3id.org/ontobpr#afterActivity</a><sup class="sup-op" title="object property">op</sup> <span class="cardinality">exactly</span> 1 <a href="#Compileapplicationrequestrequirementlist">prom-bpr:A_1_1_3_CompileApplicationRequestRequirementList</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="PreConsultation">
+        <h3>Pre Consultation<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_1_1_PreConsultation</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Giving advice by the building control authority before an application is submitted</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#PrePhase">prom-bpr:A_1_PrePhase</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Sub-classes</th>
+                <td>
+                    <a href="#Compileapplicationrequestrequirementlist">prom-bpr:A_1_1_3_CompileApplicationRequestRequirementList</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#Participationbyapplicant-collectAssessstatements">prom-bpr:A_1_1_2_ParticipationByApplicant</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#Obtainsitevaliditycertificates">prom-bpr:A_1_1_1_ObtainSiteValidityCertificates</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#Zoningreviewprocessbyapplicant">prom-bpr:A_1_1_4_ZoningReviewApplicant</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Submissionofdocuments">
+        <h3>Submission of documents<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_1_2_SubmissionOfDocuments</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#PrePhase">prom-bpr:A_1_PrePhase</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Restrictions</th>
+                <td>
+                    <a href="https://w3id.org/ontobpr#afterActivity">https://w3id.org/ontobpr#afterActivity</a><sup class="sup-op" title="object property">op</sup> <span class="cardinality">exactly</span> 1 <a href="#PreConsultation">prom-bpr:A_1_1_PreConsultation</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="PrePhase">
+        <h3>Pre Phase<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_1_PrePhase</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="https://w3id.org/ontobpr#Activity">https://w3id.org/ontobpr#Activity</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Sub-classes</th>
+                <td>
+                    <a href="#Submissionofdocuments">prom-bpr:A_1_2_SubmissionOfDocuments</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#PreConsultation">prom-bpr:A_1_1_PreConsultation</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Receivesubmission">
+        <h3>Receive submission<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_2_1_1_ReceiveSubmission</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>The submission of a building application where different conditions and requirements needs to be considered.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Administrativecheck">prom-bpr:A_2_1_AdministrativeCheck</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Registrationofapplication">
+        <h3>Registration of application<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_2_1_2_RegistrationOfApplication</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Administrativecheck">prom-bpr:A_2_1_AdministrativeCheck</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Check/requestpaymentoftaxesandfees">
+        <h3>Check/ request payment of taxes and fees<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_2_1_3_CheckPayment</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Administrativecheck">prom-bpr:A_2_1_AdministrativeCheck</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Importapplicationintoapublicadministrationsoftware">
+        <h3>Import application into a public administration software<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_2_1_4_ImportApplication</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Administrativecheck">prom-bpr:A_2_1_AdministrativeCheck</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Completenesscheck">
+        <h3>Completeness check<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_2_1_5_CompletenessCheck</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Administrativecheck">prom-bpr:A_2_1_AdministrativeCheck</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Administrativecheck">
+        <h3>Administrative check<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_2_1_AdministrativeCheck</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>An administrative process comprising confirmation of receipt, registration, and checking of the completeness of the
+submission.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Reviewphase">prom-bpr:A_2_ReviewPhase</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Sub-classes</th>
+                <td>
+                    <a href="#Completenesscheck">prom-bpr:A_2_1_5_CompletenessCheck</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#Check/requestpaymentoftaxesandfees">prom-bpr:A_2_1_3_CheckPayment</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#Registrationofapplication">prom-bpr:A_2_1_2_RegistrationOfApplication</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#Importapplicationintoapublicadministrationsoftware">prom-bpr:A_2_1_4_ImportApplication</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#Receivesubmission">prom-bpr:A_2_1_1_ReceiveSubmission</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Assignment(toplanchecker)">
+        <h3>Assignment (to plan checker)<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_2_2_Assignment</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Passing on an operation or content review.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Reviewphase">prom-bpr:A_2_ReviewPhase</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Publicagenciesparticipation">
+        <h3>Public agencies participation<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_2_3_1_PublicAgencies</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Participationofotheragencies">prom-bpr:A_2_3_ParticipationOfOtherAgencies</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Privateagenciesparticipation">
+        <h3>Private agencies participation<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_2_3_2_PrivateAgencies</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Participationofotheragencies">prom-bpr:A_2_3_ParticipationOfOtherAgencies</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Internalreferraldepartmentparticipation">
+        <h3>Internal referral department participation<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_2_3_3_InternalReferral</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Participationofotheragencies">prom-bpr:A_2_3_ParticipationOfOtherAgencies</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="InvolvementofreviewBoard">
+        <h3>Involvement of review Board<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_2_3_4_InvolvementOfReviewBoard</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Participationofotheragencies">prom-bpr:A_2_3_ParticipationOfOtherAgencies</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Participationofotheragencies">
+        <h3>Participation of other agencies<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_2_3_ParticipationOfOtherAgencies</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Participation of other involved agencies, local authorities and any specialist authorities (for ancillary construction law),
+utility companies, and other experts</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Reviewphase">prom-bpr:A_2_ReviewPhase</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Sub-classes</th>
+                <td>
+                    <a href="#Internalreferraldepartmentparticipation">prom-bpr:A_2_3_3_InternalReferral</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#Privateagenciesparticipation">prom-bpr:A_2_3_2_PrivateAgencies</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#Publicagenciesparticipation">prom-bpr:A_2_3_1_PublicAgencies</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#InvolvementofreviewBoard">prom-bpr:A_2_3_4_InvolvementOfReviewBoard</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Neighbourparticipation">
+        <h3>Neighbour participation<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_2_4_1_NeighbourParticipation</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Participationofpublic">prom-bpr:A_2_4_ParticipationOfPublic</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Publicinquiry">
+        <h3>Public inquiry<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_2_4_2_PublicInquiry</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Participationofpublic">prom-bpr:A_2_4_ParticipationOfPublic</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Participationofpublic">
+        <h3>Participation of public<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_2_4_ParticipationOfPublic</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Participation of interested or concerned people that is essential for promoting transparency, inclusivity, and informed
+decision-making</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Reviewphase">prom-bpr:A_2_ReviewPhase</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Sub-classes</th>
+                <td>
+                    <a href="#Neighbourparticipation">prom-bpr:A_2_4_1_NeighbourParticipation</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#Publicinquiry">prom-bpr:A_2_4_2_PublicInquiry</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Internaldiscussion">
+        <h3>Internal discussion<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_2_5_10_InternalDiscussion</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#A_2_5_ContentCheck">prom-bpr:A_2_5_ContentCheck</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Restrictions</th>
+                <td>
+                    <a href="https://w3id.org/ontobpr#afterActivity">https://w3id.org/ontobpr#afterActivity</a><sup class="sup-op" title="object property">op</sup> <span class="cardinality">exactly</span> 1 <a href="#Propertyconditioncheck">prom-bpr:A_2_5_9_PropertyConditionCheck</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Consultationwithapplicant">
+        <h3>Consultation with applicant<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_2_5_11_ConsultationWithApplicant</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#A_2_5_ContentCheck">prom-bpr:A_2_5_ContentCheck</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Restrictions</th>
+                <td>
+                    <a href="https://w3id.org/ontobpr#afterActivity">https://w3id.org/ontobpr#afterActivity</a><sup class="sup-op" title="object property">op</sup> <span class="cardinality">exactly</span> 1 <a href="#Internaldiscussion">prom-bpr:A_2_5_10_InternalDiscussion</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Meetingwithsupervisor">
+        <h3>Meeting with supervisor<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_2_5_12_MeetingWithSupervisor</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#A_2_5_ContentCheck">prom-bpr:A_2_5_ContentCheck</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Restrictions</th>
+                <td>
+                    <a href="https://w3id.org/ontobpr#afterActivity">https://w3id.org/ontobpr#afterActivity</a><sup class="sup-op" title="object property">op</sup> <span class="cardinality">exactly</span> 1 <a href="#Consultationwithapplicant">prom-bpr:A_2_5_11_ConsultationWithApplicant</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Securitycommission">
+        <h3>Security commission<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_2_5_13_SecurityCommission</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#A_2_5_ContentCheck">prom-bpr:A_2_5_ContentCheck</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Restrictions</th>
+                <td>
+                    <a href="https://w3id.org/ontobpr#afterActivity">https://w3id.org/ontobpr#afterActivity</a><sup class="sup-op" title="object property">op</sup> <span class="cardinality">exactly</span> 1 <a href="#Meetingwithsupervisor">prom-bpr:A_2_5_12_MeetingWithSupervisor</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Recommendationtostatutoryplanningcommittee(SPC)">
+        <h3>Recommendation to statutory planning committee (SPC)<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_2_5_14_RecommendationToStatutoryPlanningCommittee</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#A_2_5_ContentCheck">prom-bpr:A_2_5_ContentCheck</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Restrictions</th>
+                <td>
+                    <a href="https://w3id.org/ontobpr#afterActivity">https://w3id.org/ontobpr#afterActivity</a><sup class="sup-op" title="object property">op</sup> <span class="cardinality">exactly</span> 1 <a href="#Securitycommission">prom-bpr:A_2_5_13_SecurityCommission</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Reviewplanningpolicies(bytownplanningcommittee)">
+        <h3>Review planning policies (by town planning committee)<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_2_5_15_ReviewPlanningPoliciesByTownPlanningCommittee</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#A_2_5_ContentCheck">prom-bpr:A_2_5_ContentCheck</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Restrictions</th>
+                <td>
+                    <a href="https://w3id.org/ontobpr#afterActivity">https://w3id.org/ontobpr#afterActivity</a><sup class="sup-op" title="object property">op</sup> <span class="cardinality">exactly</span> 1 <a href="#Recommendationtostatutoryplanningcommittee(SPC)">prom-bpr:A_2_5_14_RecommendationToStatutoryPlanningCommittee</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Contentcheck">
+        <h3>Content check<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_2_5_1_ContentCheck</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>The examination of the submission against substantive planning and building law</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#A_2_5_ContentCheck">prom-bpr:A_2_5_ContentCheck</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Buildingcommitteemeeting">
+        <h3>Building committee meeting<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_2_5_2_BuildingCommitteeMeeting</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#A_2_5_ContentCheck">prom-bpr:A_2_5_ContentCheck</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Restrictions</th>
+                <td>
+                    <a href="https://w3id.org/ontobpr#afterActivity">https://w3id.org/ontobpr#afterActivity</a><sup class="sup-op" title="object property">op</sup> <span class="cardinality">exactly</span> 1 <a href="#Contentcheck">prom-bpr:A_2_5_1_ContentCheck</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Planning/zoningreview">
+        <h3>Planning / zoning review<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_2_5_3_PlanningZoningReview</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#A_2_5_ContentCheck">prom-bpr:A_2_5_ContentCheck</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Restrictions</th>
+                <td>
+                    <a href="https://w3id.org/ontobpr#afterActivity">https://w3id.org/ontobpr#afterActivity</a><sup class="sup-op" title="object property">op</sup> <span class="cardinality">exactly</span> 1 <a href="#Buildingcommitteemeeting">prom-bpr:A_2_5_2_BuildingCommitteeMeeting</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Building/technicalreview">
+        <h3>Building / technical review<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_2_5_4_BuildingTechnicalReview</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#A_2_5_ContentCheck">prom-bpr:A_2_5_ContentCheck</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Restrictions</th>
+                <td>
+                    <a href="https://w3id.org/ontobpr#afterActivity">https://w3id.org/ontobpr#afterActivity</a><sup class="sup-op" title="object property">op</sup> <span class="cardinality">exactly</span> 1 <a href="#Planning/zoningreview">prom-bpr:A_2_5_3_PlanningZoningReview</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Constructionlawreview">
+        <h3>Construction law review<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_2_5_5_ConstructionLawReview</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#A_2_5_ContentCheck">prom-bpr:A_2_5_ContentCheck</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Restrictions</th>
+                <td>
+                    <a href="https://w3id.org/ontobpr#afterActivity">https://w3id.org/ontobpr#afterActivity</a><sup class="sup-op" title="object property">op</sup> <span class="cardinality">exactly</span> 1 <a href="#Building/technicalreview">prom-bpr:A_2_5_4_BuildingTechnicalReview</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Mechanicalplanexamination">
+        <h3>Mechanical plan examination<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_2_5_6_MechanicalPlanExamination</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#A_2_5_ContentCheck">prom-bpr:A_2_5_ContentCheck</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Restrictions</th>
+                <td>
+                    <a href="https://w3id.org/ontobpr#afterActivity">https://w3id.org/ontobpr#afterActivity</a><sup class="sup-op" title="object property">op</sup> <span class="cardinality">exactly</span> 1 <a href="#Constructionlawreview">prom-bpr:A_2_5_5_ConstructionLawReview</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Firerevisionexamination">
+        <h3>Fire revision examination<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_2_5_7_FireRevisionExamination</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#A_2_5_ContentCheck">prom-bpr:A_2_5_ContentCheck</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Restrictions</th>
+                <td>
+                    <a href="https://w3id.org/ontobpr#afterActivity">https://w3id.org/ontobpr#afterActivity</a><sup class="sup-op" title="object property">op</sup> <span class="cardinality">exactly</span> 1 <a href="#Mechanicalplanexamination">prom-bpr:A_2_5_6_MechanicalPlanExamination</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Preparetechnicalreport">
+        <h3>Prepare technical report<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_2_5_8_PrepareTechnicalReport</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#A_2_5_ContentCheck">prom-bpr:A_2_5_ContentCheck</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Restrictions</th>
+                <td>
+                    <a href="https://w3id.org/ontobpr#afterActivity">https://w3id.org/ontobpr#afterActivity</a><sup class="sup-op" title="object property">op</sup> <span class="cardinality">exactly</span> 1 <a href="#Firerevisionexamination">prom-bpr:A_2_5_7_FireRevisionExamination</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Propertyconditioncheck">
+        <h3>Property condition check<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_2_5_9_PropertyConditionCheck</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#A_2_5_ContentCheck">prom-bpr:A_2_5_ContentCheck</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Restrictions</th>
+                <td>
+                    <a href="https://w3id.org/ontobpr#afterActivity">https://w3id.org/ontobpr#afterActivity</a><sup class="sup-op" title="object property">op</sup> <span class="cardinality">exactly</span> 1 <a href="#Preparetechnicalreport">prom-bpr:A_2_5_8_PrepareTechnicalReport</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="A_2_5_ContentCheck">
+        <h3>Content check<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_2_5_ContentCheck</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>The examination of the submission against substantive planning and building law</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Reviewphase">prom-bpr:A_2_ReviewPhase</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Sub-classes</th>
+                <td>
+                    <a href="#Mechanicalplanexamination">prom-bpr:A_2_5_6_MechanicalPlanExamination</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#Contentcheck">prom-bpr:A_2_5_1_ContentCheck</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#Buildingcommitteemeeting">prom-bpr:A_2_5_2_BuildingCommitteeMeeting</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#Planning/zoningreview">prom-bpr:A_2_5_3_PlanningZoningReview</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#Preparetechnicalreport">prom-bpr:A_2_5_8_PrepareTechnicalReport</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#Internaldiscussion">prom-bpr:A_2_5_10_InternalDiscussion</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#Propertyconditioncheck">prom-bpr:A_2_5_9_PropertyConditionCheck</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#Building/technicalreview">prom-bpr:A_2_5_4_BuildingTechnicalReview</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#Constructionlawreview">prom-bpr:A_2_5_5_ConstructionLawReview</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#Consultationwithapplicant">prom-bpr:A_2_5_11_ConsultationWithApplicant</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#Recommendationtostatutoryplanningcommittee(SPC)">prom-bpr:A_2_5_14_RecommendationToStatutoryPlanningCommittee</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#Meetingwithsupervisor">prom-bpr:A_2_5_12_MeetingWithSupervisor</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#Reviewplanningpolicies(bytownplanningcommittee)">prom-bpr:A_2_5_15_ReviewPlanningPoliciesByTownPlanningCommittee</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#Firerevisionexamination">prom-bpr:A_2_5_7_FireRevisionExamination</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#Securitycommission">prom-bpr:A_2_5_13_SecurityCommission</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Completingdocumentation">
+        <h3>Completing documentation<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_2_6_1_CompletingDocumentation</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Issuingnotificationletter">prom-bpr:A_2_6_IssuingNotificationLetter</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Restrictions</th>
+                <td>
+                    <a href="https://w3id.org/ontobpr#afterActivity">https://w3id.org/ontobpr#afterActivity</a><sup class="sup-op" title="object property">op</sup> <span class="cardinality">exactly</span> 1 <a href="#Issuingnotificationletter">prom-bpr:A_2_6_IssuingNotificationLetter</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Requestfurtherdocuments(ifneeded)">
+        <h3>Request further documents (if needed)<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_2_6_2_RequestFurtherDocumentsIfNeeded</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Issuingnotificationletter">prom-bpr:A_2_6_IssuingNotificationLetter</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Restrictions</th>
+                <td>
+                    <a href="https://w3id.org/ontobpr#afterActivity">https://w3id.org/ontobpr#afterActivity</a><sup class="sup-op" title="object property">op</sup> <span class="cardinality">exactly</span> 1 <a href="#Completingdocumentation">prom-bpr:A_2_6_1_CompletingDocumentation</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Checkstamps,payment">
+        <h3>Check stamps, payment<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_2_6_3_CheckStampsPayment</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Issuingnotificationletter">prom-bpr:A_2_6_IssuingNotificationLetter</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Restrictions</th>
+                <td>
+                    <a href="https://w3id.org/ontobpr#afterActivity">https://w3id.org/ontobpr#afterActivity</a><sup class="sup-op" title="object property">op</sup> <span class="cardinality">exactly</span> 1 <a href="#Requestfurtherdocuments(ifneeded)">prom-bpr:A_2_6_2_RequestFurtherDocumentsIfNeeded</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Checkparticipationstatements">
+        <h3>Check participation statements<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_2_6_4_CheckParticipationStatements</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Issuingnotificationletter">prom-bpr:A_2_6_IssuingNotificationLetter</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Restrictions</th>
+                <td>
+                    <a href="https://w3id.org/ontobpr#afterActivity">https://w3id.org/ontobpr#afterActivity</a><sup class="sup-op" title="object property">op</sup> <span class="cardinality">exactly</span> 1 <a href="#Checkstamps,payment">prom-bpr:A_2_6_3_CheckStampsPayment</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Applicantpresentsbuildingapplication">
+        <h3>Applicant presents building application<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_2_6_5_ApplicantPresentsBuildingApplication</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Issuingnotificationletter">prom-bpr:A_2_6_IssuingNotificationLetter</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Restrictions</th>
+                <td>
+                    <a href="https://w3id.org/ontobpr#afterActivity">https://w3id.org/ontobpr#afterActivity</a><sup class="sup-op" title="object property">op</sup> <span class="cardinality">exactly</span> 1 <a href="#Checkparticipationstatements">prom-bpr:A_2_6_4_CheckParticipationStatements</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Issuenotificationletterforconstructionstart">
+        <h3>Issue notification letter for construction start<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_2_6_6_IssueNotificationLetterForConstructionStart</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Issuingnotificationletter">prom-bpr:A_2_6_IssuingNotificationLetter</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Restrictions</th>
+                <td>
+                    <a href="https://w3id.org/ontobpr#afterActivity">https://w3id.org/ontobpr#afterActivity</a><sup class="sup-op" title="object property">op</sup> <span class="cardinality">exactly</span> 1 <a href="#Applicantpresentsbuildingapplication">prom-bpr:A_2_6_5_ApplicantPresentsBuildingApplication</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Issuingnotificationletter">
+        <h3>Issuing notification letter <sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_2_6_IssuingNotificationLetter</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>The issuance of the decision as to whether a project is eligible for a building permit or license to occupy and any possible
+enforcement action.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Reviewphase">prom-bpr:A_2_ReviewPhase</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Sub-classes</th>
+                <td>
+                    <a href="#Requestfurtherdocuments(ifneeded)">prom-bpr:A_2_6_2_RequestFurtherDocumentsIfNeeded</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#Checkparticipationstatements">prom-bpr:A_2_6_4_CheckParticipationStatements</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#Checkstamps,payment">prom-bpr:A_2_6_3_CheckStampsPayment</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#Completingdocumentation">prom-bpr:A_2_6_1_CompletingDocumentation</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#Applicantpresentsbuildingapplication">prom-bpr:A_2_6_5_ApplicantPresentsBuildingApplication</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#Issuenotificationletterforconstructionstart">prom-bpr:A_2_6_6_IssueNotificationLetterForConstructionStart</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Reviewphase">
+        <h3>Review phase<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_2_ReviewPhase</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="https://w3id.org/ontobpr#Activity">https://w3id.org/ontobpr#Activity</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Restrictions</th>
+                <td>
+                    <a href="https://w3id.org/ontobpr#afterActivity">https://w3id.org/ontobpr#afterActivity</a><sup class="sup-op" title="object property">op</sup> <span class="cardinality">exactly</span> 1 <a href="#PrePhase">prom-bpr:A_1_PrePhase</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Sub-classes</th>
+                <td>
+                    <a href="#Assignment(toplanchecker)">prom-bpr:A_2_2_Assignment</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#Participationofpublic">prom-bpr:A_2_4_ParticipationOfPublic</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#Issuingnotificationletter">prom-bpr:A_2_6_IssuingNotificationLetter</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#Administrativecheck">prom-bpr:A_2_1_AdministrativeCheck</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#A_2_5_ContentCheck">prom-bpr:A_2_5_ContentCheck</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#Participationofotheragencies">prom-bpr:A_2_3_ParticipationOfOtherAgencies</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Obtainapprovaloftheconstructionconformity">
+        <h3>Obtain approval of the construction conformity<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_3_1_1_ApprovalConstructionConformity</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#SiteInspection">prom-bpr:A_3_1_SiteInspection</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Constructioncompletion(notification)">
+        <h3>Construction completion (notification)<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_3_1_2_ConstructionCompletion</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#SiteInspection">prom-bpr:A_3_1_SiteInspection</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Submitconstructionconformitycertificate">
+        <h3>Submit construction conformity certificate<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_3_1_3_ConformityCertificate</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#SiteInspection">prom-bpr:A_3_1_SiteInspection</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Issuanceofcompletioncertificate(occupancypermit)">
+        <h3>Issuance of completion certificate (occupancy permit)<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_3_1_4_CompletionCertificate</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#SiteInspection">prom-bpr:A_3_1_SiteInspection</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="SiteInspection">
+        <h3>Site Inspection<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_3_1_SiteInspection</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Postphase">prom-bpr:A_3_PostPhase</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Sub-classes</th>
+                <td>
+                    <a href="#Obtainapprovaloftheconstructionconformity">prom-bpr:A_3_1_1_ApprovalConstructionConformity</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#Constructioncompletion(notification)">prom-bpr:A_3_1_2_ConstructionCompletion</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#Submitconstructionconformitycertificate">prom-bpr:A_3_1_3_ConformityCertificate</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#Issuanceofcompletioncertificate(occupancypermit)">prom-bpr:A_3_1_4_CompletionCertificate</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Archiving">
+        <h3>Archiving<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_3_2_Archiving</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Postphase">prom-bpr:A_3_PostPhase</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Postphase">
+        <h3>Post phase<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#A_3_PostPhase</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="https://w3id.org/ontobpr#Activity">https://w3id.org/ontobpr#Activity</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Sub-classes</th>
+                <td>
+                    <a href="#SiteInspection">prom-bpr:A_3_1_SiteInspection</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#Archiving">prom-bpr:A_3_2_Archiving</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Eventlogcompund">
+        <h3>Event log compund<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#EventLogCompound</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="https://w3id.org/ontobpr#Activity">https://w3id.org/ontobpr#Activity</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Restrictions</th>
+                <td>
+                    <a href="#haseventlogentry">prom-bpr:hasEventLogEntry</a><sup class="sup-op" title="object property">op</sup> <span class="cardinality">some</span> <a href="#Eventlogentry">prom-bpr:EventLogEntry</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In domain of</th>
+                <td>
+                    <a href="#haseventlogentry">prom-bpr:hasEventLogEntry</a><sup class="sup-op" title="object property">op</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Eventlogentry">
+        <h3>Event log entry<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#EventLogEntry</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="http://www.w3.org/ns/prov#Activity">prov:Activity</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Sub-classes</th>
+                <td>
+                    <a href="#Unclassifiedeventlogentry">prom-bpr:UnclassifiedEventLogEntry</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In range of</th>
+                <td>
+                    <a href="#haseventlogentry">prom-bpr:hasEventLogEntry</a><sup class="sup-op" title="object property">op</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Unclassifiedeventlogentry">
+        <h3>Unclassified event log entry<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#UnclassifiedEventLogEntry</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Eventlogentry">prom-bpr:EventLogEntry</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+</section>
+<section id="objectproperties">
+    <h2>Object Properties <span style="float:right; font-size:smaller;"><a href="">&uparrow;</a></span></h2>
+    <ul class="hlist">
+        <li><a href="#afterActivity">afterActivity</a></li>
+        <li><a href="#haseventlogentry">has event log entry</a></li>
+    </ul>
+    <div class="entity property" id="afterActivity">
+        <h3>afterActivity<sup title="object property" class="sup-op">op</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/ontobpr#afterActivity</code></td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="haseventlogentry">
+        <h3>has event log entry<sup title="object property" class="sup-op">op</sup></h3>
+        <table>
+            <tr>
+                <th>IRI</th>
+                <td><code>https://w3id.org/prom-bpr#hasEventLogEntry</code></td>
+            </tr>
+            <tr>
+                <th>Super-properties</th>
+                <td>
+                    <a href="http://www.w3.org/2002/07/owl#topObjectProperty">owl:topObjectProperty</a>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="#Eventlogcompund">prom-bpr:EventLogCompound</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="#Eventlogentry">prom-bpr:EventLogEntry</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+</section>
+
+  
+  <section id="namedindividuals">
+    <h2>Named Individuals <span style="float:right; font-size:smaller;"><a href="">&uparrow;</a></span></h2>
+    <ul class="hlist">
+    </ul>
+</section>
+  
+  <section id="namespaces">
+    <h2>Namespaces <span style="float:right; font-size:smaller;"><a href="">&uparrow;</a></span></h2>
+    <dl>
+        <dt><em>default (:)</em></dt>
+        <dd><code>https://w3id.org/prom-bpr#</code></dd>
+        <dt>ct</dt>
+        <dd><code>https://standards.iso.org/iso/21597/-1/ed-1/en/Container#</code></dd>
+        <dt>dc</dt>
+        <dd><code>http://purl.org/dc/elements/1.1/</code></dd>
+        <dt>dcterms</dt>
+        <dd><code>http://purl.org/dc/terms/</code></dd>
+        <dt>isoprops</dt>
+        <dd><code>https://w3id.org/isoprops#</code></dd>
+        <dt>obpa</dt>
+        <dd><code>https://w3id.org/obpa#</code></dd>
+        <dt>ontobpr</dt>
+        <dd><code>https://w3id.org/ontobpr</code></dd>
+        <dt>owl</dt>
+        <dd><code>http://www.w3.org/2002/07/owl#</code></dd>
+        <dt>prom-bpr</dt>
+        <dd><code>https://w3id.org/prom-bpr#</code></dd>
+        <dt>prom-bpr-instances</dt>
+        <dd><code>https://w3id.org/prom-bpr-instances#</code></dd>
+        <dt>prov</dt>
+        <dd><code>http://www.w3.org/ns/prov#</code></dd>
+        <dt>rdf</dt>
+        <dd><code>http://www.w3.org/1999/02/22-rdf-syntax-ns#</code></dd>
+        <dt>rdfs</dt>
+        <dd><code>http://www.w3.org/2000/01/rdf-schema#</code></dd>
+        <dt>sdo</dt>
+        <dd><code>https://schema.org/</code></dd>
+        <dt>sh</dt>
+        <dd><code>http://www.w3.org/ns/shacl#</code></dd>
+        <dt>skos</dt>
+        <dd><code>http://www.w3.org/2004/02/skos/core#</code></dd>
+        <dt>vann</dt>
+        <dd><code>http://purl.org/vocab/vann/</code></dd>
+        <dt>xml</dt>
+        <dd><code>http://www.w3.org/XML/1998/namespace</code></dd>
+        <dt>xsd</dt>
+        <dd><code>http://www.w3.org/2001/XMLSchema#</code></dd>
+    </dl>
+</section>
+  <section id="legend">
+      <h2>Legend</h2>
+      <table class="entity">
+          <tr><td><sup class="sup-c" title="Classes">c</sup></td><td>Classes</td></tr>
+          <tr><td><sup class="sup-op" title="Object Properties">op</sup></td><td>Object Properties</td></tr>
+          <tr><td><sup class="sup-fp" title="Functional Properties">fp</sup></td><td>Functional Properties</td></tr>
+          <tr><td><sup class="sup-dp" title="Data Properties">dp</sup></td><td>Data Properties</td></tr>
+          <tr><td><sup class="sup-ap" title="Annotation Properties">dp</sup></td><td>Annotation Properties</td></tr>
+          <tr><td><sup class="sup-p" title="Properties">p</sup></td><td>Properties</td></tr>
+          <tr><td><sup class="sup-ni" title="Named Individuals">ni</sup></td><td>Named Individuals</td></tr>
+      </table>
+  </section>
+</body>
+</html>

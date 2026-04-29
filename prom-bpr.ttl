@@ -1,0 +1,534 @@
+# baseURI: https://w3id.org/prom-bpr
+# imports: http://www.w3.org/ns/prov-o#
+# imports: https://w3id.org/ontobpr
+# prefix: prom-bpr
+
+@prefix Container: <https://standards.iso.org/iso/21597/-1/ed-1/en/Container#> .
+@prefix ct: <https://standards.iso.org/iso/21597/-1/ed-1/en/Container#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix isoprops: <https://w3id.org/isoprops#> .
+@prefix obpa: <https://w3id.org/obpa#> .
+@prefix ontobpr: <https://w3id.org/ontobpr> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prom-bpr: <https://w3id.org/prom-bpr#> .
+@prefix prom-bpr-instances: <https://w3id.org/prom-bpr-instances#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://w3id.org/ontobpr#Activity>
+  rdfs:subClassOf prov:Activity ;
+.
+<https://w3id.org/ontobpr#afterActivity>
+  rdf:type owl:ObjectProperty ;
+.
+<https://w3id.org/prom-bpr>
+  rdf:type owl:Ontology ;
+  dc:created "2026-01-19"^^xsd:date ;
+  dc:creator [
+      rdf:type schema:Person ;
+      schema:email <mailto:judith.fauth@rub.de> ;
+      schema:identifier <https://orcid.org/0000-0002-9078-8393> ;
+      schema:memberOf [
+          schema:identifier <https://www.linkedin.com/in/judith-fauth-5b5137bb> ;
+          schema:name "Technical University of Munich, DE" ;
+        ] ;
+      schema:name "Dr. Judith Fauth" ;
+    ] ;
+  dc:creator [
+      rdf:type schema:Person ;
+      schema:email <mailto:philipp.hagedorn-n6v@rub.de> ;
+      schema:identifier <https://orcid.org/0000-0002-6249-243X> ;
+      schema:memberOf [
+          schema:identifier <https://www.inf.bi.ruhr-uni-bochum.de/iib/lehrstuhl/mitarbeiter/philipp_hagedorn.html.en> ;
+          schema:name "Ruhr University Bochum, DE" ;
+        ] ;
+      schema:name "Dr. Philipp Hagedorn" ;
+    ] ;
+  dc:creator [
+      rdf:type schema:Person ;
+      schema:email <mailto:ronny.weinkauf@hs-merseburg.de> ;
+      schema:identifier <https://orcid.org/0009-0003-6827-0154> ;
+      schema:memberOf [
+          schema:identifier <https://www.hs-merseburg.de/hochschule/information/personenverzeichnis/details/person/weinkauf-ronny-613/> ;
+          schema:name "Merseburg University of Applied Sciences, DE" ;
+        ] ;
+      schema:name "Prof. Dr. Ronny Weinkauf" ;
+    ] ;
+  dc:license <https://creativecommons.org/licenses/by/4.0/> ;
+  dc:modified "2026-01-23"^^xsd:date ;
+  dc:source "https://github.com/RUB-Informatik-im-Bauwesen/prom-bpr"^^xsd:anyURI ;
+  dc:title "PROM-BPR"@en ;
+  vann:preferredNamespacePrefix "prom-bpr" ;
+  vann:preferredNamespaceUri "https://w3id.org/prom-bpr#"^^xsd:anyURI ;
+  <http://purl.org/vocommons/voaf#extends> <https://w3id.org/ontobpr> ;
+  rdfs:comment "PROM-BPR provides a reference process model for building permit review processes, capturing the key activities, their sequence, and dependencies for implementing process mining approaches. Furthermore, it contains classes for representing event log entries, unclassified event log entries, and event log compounds. The prefix of the ontology is <code>prom-bpr:</code>. The process model consists of three main phases: <code>prom-bpr:A_1_PrePhase</code>, <code>prom-bpr:A_2_ReviewPhase</code>, and <code>prom-bpr:A_3_PostPhase</code>. The ontology extends <code>ontobpr:</code> and utilizes <code>prov:</code>."@en ;
+  
+  owl:imports <http://www.w3.org/ns/prov-o#> ;
+  owl:imports <https://w3id.org/ontobpr> ;
+.
+prom-bpr:A_1_1_1_ObtainSiteValidityCertificates
+  rdf:type owl:Class ;
+  rdfs:label "Obtain site validity certificates" ;
+  rdfs:subClassOf prom-bpr:A_1_1_PreConsultation ;
+.
+prom-bpr:A_1_1_2_ParticipationByApplicant
+  rdf:type owl:Class ;
+  rdfs:label "Participation by applicant - collect & Assess statements" ;
+  rdfs:subClassOf prom-bpr:A_1_1_PreConsultation ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass prom-bpr:A_1_1_1_ObtainSiteValidityCertificates ;
+      owl:onProperty <https://w3id.org/ontobpr#afterActivity> ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+prom-bpr:A_1_1_3_CompileApplicationRequestRequirementList
+  rdf:type owl:Class ;
+  rdfs:label "Compile application request requirement list" ;
+  rdfs:subClassOf prom-bpr:A_1_1_PreConsultation ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass prom-bpr:A_1_1_2_ParticipationByApplicant ;
+      owl:onProperty <https://w3id.org/ontobpr#afterActivity> ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+prom-bpr:A_1_1_4_ZoningReviewApplicant
+  rdf:type owl:Class ;
+  rdfs:label "Zoning review process by applicant" ;
+  rdfs:subClassOf prom-bpr:A_1_1_PreConsultation ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass prom-bpr:A_1_1_3_CompileApplicationRequestRequirementList ;
+      owl:onProperty <https://w3id.org/ontobpr#afterActivity> ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+prom-bpr:A_1_1_PreConsultation
+  rdf:type owl:Class ;
+  rdfs:comment "Giving advice by the building control authority before an application is submitted"@en ;
+  rdfs:label "Pre Consultation"@en ;
+  rdfs:subClassOf prom-bpr:A_1_PrePhase ;
+.
+prom-bpr:A_1_2_SubmissionOfDocuments
+  rdf:type owl:Class ;
+  rdfs:label "Submission of documents" ;
+  rdfs:subClassOf prom-bpr:A_1_PrePhase ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass prom-bpr:A_1_1_PreConsultation ;
+      owl:onProperty <https://w3id.org/ontobpr#afterActivity> ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+prom-bpr:A_1_PrePhase
+  rdf:type owl:Class ;
+  rdfs:label "Pre Phase"@en ;
+  rdfs:subClassOf <https://w3id.org/ontobpr#Activity> ;
+.
+prom-bpr:A_2_1_1_ReceiveSubmission
+  rdf:type owl:Class ;
+  rdfs:comment "The submission of a building application where different conditions and requirements needs to be considered." ;
+  rdfs:label "Receive submission" ;
+  rdfs:subClassOf prom-bpr:A_2_1_AdministrativeCheck ;
+.
+prom-bpr:A_2_1_2_RegistrationOfApplication
+  rdf:type owl:Class ;
+  rdfs:label "Registration of application" ;
+  rdfs:subClassOf prom-bpr:A_2_1_AdministrativeCheck ;
+.
+prom-bpr:A_2_1_3_CheckPayment
+  rdf:type owl:Class ;
+  rdfs:label "Check/ request payment of taxes and fees" ;
+  rdfs:subClassOf prom-bpr:A_2_1_AdministrativeCheck ;
+.
+prom-bpr:A_2_1_4_ImportApplication
+  rdf:type owl:Class ;
+  rdfs:label "Import application into a public administration software" ;
+  rdfs:subClassOf prom-bpr:A_2_1_AdministrativeCheck ;
+.
+prom-bpr:A_2_1_5_CompletenessCheck
+  rdf:type owl:Class ;
+  rdfs:label "Completeness check" ;
+  rdfs:subClassOf prom-bpr:A_2_1_AdministrativeCheck ;
+.
+prom-bpr:A_2_1_AdministrativeCheck
+  rdf:type owl:Class ;
+  rdfs:comment """An administrative process comprising confirmation of receipt, registration, and checking of the completeness of the
+submission.""" ;
+  rdfs:label "Administrative check" ;
+  rdfs:subClassOf prom-bpr:A_2_ReviewPhase ;
+.
+prom-bpr:A_2_2_Assignment
+  rdf:type owl:Class ;
+  rdfs:comment "Passing on an operation or content review." ;
+  rdfs:label "Assignment (to plan checker)" ;
+  rdfs:subClassOf prom-bpr:A_2_ReviewPhase ;
+  owl:equivalentClass <https://w3id.org/ontobpr#Assignment> ;
+.
+prom-bpr:A_2_3_1_PublicAgencies
+  rdf:type owl:Class ;
+  rdfs:label "Public agencies participation" ;
+  rdfs:subClassOf prom-bpr:A_2_3_ParticipationOfOtherAgencies ;
+.
+prom-bpr:A_2_3_2_PrivateAgencies
+  rdf:type owl:Class ;
+  rdfs:label "Private agencies participation" ;
+  rdfs:subClassOf prom-bpr:A_2_3_ParticipationOfOtherAgencies ;
+.
+prom-bpr:A_2_3_3_InternalReferral
+  rdf:type owl:Class ;
+  rdfs:label "Internal referral department participation" ;
+  rdfs:subClassOf prom-bpr:A_2_3_ParticipationOfOtherAgencies ;
+.
+prom-bpr:A_2_3_4_InvolvementOfReviewBoard
+  rdf:type owl:Class ;
+  rdfs:label "Involvement of review Board" ;
+  rdfs:subClassOf prom-bpr:A_2_3_ParticipationOfOtherAgencies ;
+.
+prom-bpr:A_2_3_ParticipationOfOtherAgencies
+  rdf:type owl:Class ;
+  rdfs:comment """Participation of other involved agencies, local authorities and any specialist authorities (for ancillary construction law),
+utility companies, and other experts""" ;
+  rdfs:label "Participation of other agencies" ;
+  rdfs:subClassOf prom-bpr:A_2_ReviewPhase ;
+.
+prom-bpr:A_2_4_1_NeighbourParticipation
+  rdf:type owl:Class ;
+  rdfs:label "Neighbour participation" ;
+  rdfs:subClassOf prom-bpr:A_2_4_ParticipationOfPublic ;
+.
+prom-bpr:A_2_4_2_PublicInquiry
+  rdf:type owl:Class ;
+  rdfs:label "Public inquiry" ;
+  rdfs:subClassOf prom-bpr:A_2_4_ParticipationOfPublic ;
+.
+prom-bpr:A_2_4_ParticipationOfPublic
+  rdf:type owl:Class ;
+  rdfs:comment """Participation of interested or concerned people that is essential for promoting transparency, inclusivity, and informed
+decision-making""" ;
+  rdfs:label "Participation of public" ;
+  rdfs:subClassOf prom-bpr:A_2_ReviewPhase ;
+.
+prom-bpr:A_2_5_10_InternalDiscussion
+  rdf:type owl:Class ;
+  rdfs:label "Internal discussion" ;
+  rdfs:subClassOf prom-bpr:A_2_5_ContentCheck ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass prom-bpr:A_2_5_9_PropertyConditionCheck ;
+      owl:onProperty <https://w3id.org/ontobpr#afterActivity> ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+prom-bpr:A_2_5_11_ConsultationWithApplicant
+  rdf:type owl:Class ;
+  rdfs:label "Consultation with applicant" ;
+  rdfs:subClassOf prom-bpr:A_2_5_ContentCheck ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass prom-bpr:A_2_5_10_InternalDiscussion ;
+      owl:onProperty <https://w3id.org/ontobpr#afterActivity> ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+prom-bpr:A_2_5_12_MeetingWithSupervisor
+  rdf:type owl:Class ;
+  rdfs:label "Meeting with supervisor" ;
+  rdfs:subClassOf prom-bpr:A_2_5_ContentCheck ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass prom-bpr:A_2_5_11_ConsultationWithApplicant ;
+      owl:onProperty <https://w3id.org/ontobpr#afterActivity> ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+prom-bpr:A_2_5_13_SecurityCommission
+  rdf:type owl:Class ;
+  rdfs:label "Security commission" ;
+  rdfs:subClassOf prom-bpr:A_2_5_ContentCheck ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass prom-bpr:A_2_5_12_MeetingWithSupervisor ;
+      owl:onProperty <https://w3id.org/ontobpr#afterActivity> ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+prom-bpr:A_2_5_14_RecommendationToStatutoryPlanningCommittee
+  rdf:type owl:Class ;
+  rdfs:label "Recommendation to statutory planning committee (SPC)" ;
+  rdfs:subClassOf prom-bpr:A_2_5_ContentCheck ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass prom-bpr:A_2_5_13_SecurityCommission ;
+      owl:onProperty <https://w3id.org/ontobpr#afterActivity> ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+prom-bpr:A_2_5_15_ReviewPlanningPoliciesByTownPlanningCommittee
+  rdf:type owl:Class ;
+  rdfs:label "Review planning policies (by town planning committee)" ;
+  rdfs:subClassOf prom-bpr:A_2_5_ContentCheck ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass prom-bpr:A_2_5_14_RecommendationToStatutoryPlanningCommittee ;
+      owl:onProperty <https://w3id.org/ontobpr#afterActivity> ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+prom-bpr:A_2_5_1_ContentCheck
+  rdf:type owl:Class ;
+  rdfs:comment "The examination of the submission against substantive planning and building law" ;
+  rdfs:label "Content check" ;
+  rdfs:subClassOf prom-bpr:A_2_5_ContentCheck ;
+  owl:equivalentClass <https://w3id.org/ontobprContentReview> ;
+.
+prom-bpr:A_2_5_2_BuildingCommitteeMeeting
+  rdf:type owl:Class ;
+  rdfs:label "Building committee meeting" ;
+  rdfs:subClassOf prom-bpr:A_2_5_ContentCheck ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass prom-bpr:A_2_5_1_ContentCheck ;
+      owl:onProperty <https://w3id.org/ontobpr#afterActivity> ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+prom-bpr:A_2_5_3_PlanningZoningReview
+  rdf:type owl:Class ;
+  rdfs:label "Planning / zoning review" ;
+  rdfs:subClassOf prom-bpr:A_2_5_ContentCheck ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass prom-bpr:A_2_5_2_BuildingCommitteeMeeting ;
+      owl:onProperty <https://w3id.org/ontobpr#afterActivity> ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+prom-bpr:A_2_5_4_BuildingTechnicalReview
+  rdf:type owl:Class ;
+  rdfs:label "Building / technical review" ;
+  rdfs:subClassOf prom-bpr:A_2_5_ContentCheck ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass prom-bpr:A_2_5_3_PlanningZoningReview ;
+      owl:onProperty <https://w3id.org/ontobpr#afterActivity> ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+prom-bpr:A_2_5_5_ConstructionLawReview
+  rdf:type owl:Class ;
+  rdfs:label "Construction law review" ;
+  rdfs:subClassOf prom-bpr:A_2_5_ContentCheck ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass prom-bpr:A_2_5_4_BuildingTechnicalReview ;
+      owl:onProperty <https://w3id.org/ontobpr#afterActivity> ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+prom-bpr:A_2_5_6_MechanicalPlanExamination
+  rdf:type owl:Class ;
+  rdfs:label "Mechanical plan examination" ;
+  rdfs:subClassOf prom-bpr:A_2_5_ContentCheck ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass prom-bpr:A_2_5_5_ConstructionLawReview ;
+      owl:onProperty <https://w3id.org/ontobpr#afterActivity> ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+prom-bpr:A_2_5_7_FireRevisionExamination
+  rdf:type owl:Class ;
+  rdfs:label "Fire revision examination" ;
+  rdfs:subClassOf prom-bpr:A_2_5_ContentCheck ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass prom-bpr:A_2_5_6_MechanicalPlanExamination ;
+      owl:onProperty <https://w3id.org/ontobpr#afterActivity> ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+prom-bpr:A_2_5_8_PrepareTechnicalReport
+  rdf:type owl:Class ;
+  rdfs:label "Prepare technical report" ;
+  rdfs:subClassOf prom-bpr:A_2_5_ContentCheck ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass prom-bpr:A_2_5_7_FireRevisionExamination ;
+      owl:onProperty <https://w3id.org/ontobpr#afterActivity> ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+prom-bpr:A_2_5_9_PropertyConditionCheck
+  rdf:type owl:Class ;
+  rdfs:label "Property condition check" ;
+  rdfs:subClassOf prom-bpr:A_2_5_ContentCheck ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass prom-bpr:A_2_5_8_PrepareTechnicalReport ;
+      owl:onProperty <https://w3id.org/ontobpr#afterActivity> ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+prom-bpr:A_2_5_ContentCheck
+  rdf:type owl:Class ;
+  rdfs:comment "The examination of the submission against substantive planning and building law" ;
+  rdfs:label "Content check" ;
+  rdfs:subClassOf prom-bpr:A_2_ReviewPhase ;
+  owl:equivalentClass <https://w3id.org/ontobpr#ContentReview> ;
+.
+prom-bpr:A_2_6_1_CompletingDocumentation
+  rdf:type owl:Class ;
+  rdfs:label "Completing documentation" ;
+  rdfs:subClassOf prom-bpr:A_2_6_IssuingNotificationLetter ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass prom-bpr:A_2_6_IssuingNotificationLetter ;
+      owl:onProperty <https://w3id.org/ontobpr#afterActivity> ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+prom-bpr:A_2_6_2_RequestFurtherDocumentsIfNeeded
+  rdf:type owl:Class ;
+  rdfs:label "Request further documents (if needed)" ;
+  rdfs:subClassOf prom-bpr:A_2_6_IssuingNotificationLetter ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass prom-bpr:A_2_6_1_CompletingDocumentation ;
+      owl:onProperty <https://w3id.org/ontobpr#afterActivity> ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+prom-bpr:A_2_6_3_CheckStampsPayment
+  rdf:type owl:Class ;
+  rdfs:label "Check stamps, payment" ;
+  rdfs:subClassOf prom-bpr:A_2_6_IssuingNotificationLetter ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass prom-bpr:A_2_6_2_RequestFurtherDocumentsIfNeeded ;
+      owl:onProperty <https://w3id.org/ontobpr#afterActivity> ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+prom-bpr:A_2_6_4_CheckParticipationStatements
+  rdf:type owl:Class ;
+  rdfs:label "Check participation statements" ;
+  rdfs:subClassOf prom-bpr:A_2_6_IssuingNotificationLetter ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass prom-bpr:A_2_6_3_CheckStampsPayment ;
+      owl:onProperty <https://w3id.org/ontobpr#afterActivity> ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+prom-bpr:A_2_6_5_ApplicantPresentsBuildingApplication
+  rdf:type owl:Class ;
+  rdfs:label "Applicant presents building application" ;
+  rdfs:subClassOf prom-bpr:A_2_6_IssuingNotificationLetter ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass prom-bpr:A_2_6_4_CheckParticipationStatements ;
+      owl:onProperty <https://w3id.org/ontobpr#afterActivity> ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+prom-bpr:A_2_6_6_IssueNotificationLetterForConstructionStart
+  rdf:type owl:Class ;
+  rdfs:label "Issue notification letter for construction start" ;
+  rdfs:subClassOf prom-bpr:A_2_6_IssuingNotificationLetter ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass prom-bpr:A_2_6_5_ApplicantPresentsBuildingApplication ;
+      owl:onProperty <https://w3id.org/ontobpr#afterActivity> ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+prom-bpr:A_2_6_IssuingNotificationLetter
+  rdf:type owl:Class ;
+  rdfs:comment """The issuance of the decision as to whether a project is eligible for a building permit or license to occupy and any possible
+enforcement action.""" ;
+  rdfs:label "Issuing notification letter " ;
+  rdfs:subClassOf prom-bpr:A_2_ReviewPhase ;
+  owl:equivalentClass <https://w3id.org/ontobpr#IssuingNotificationLetter> ;
+.
+prom-bpr:A_2_ReviewPhase
+  rdf:type owl:Class ;
+  rdfs:label "Review phase" ;
+  rdfs:subClassOf <https://w3id.org/ontobpr#Activity> ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass prom-bpr:A_1_PrePhase ;
+      owl:onProperty <https://w3id.org/ontobpr#afterActivity> ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+prom-bpr:A_3_1_1_ApprovalConstructionConformity
+  rdf:type owl:Class ;
+  rdfs:label "Obtain approval of the construction conformity" ;
+  rdfs:subClassOf prom-bpr:A_3_1_SiteInspection ;
+.
+prom-bpr:A_3_1_2_ConstructionCompletion
+  rdf:type owl:Class ;
+  rdfs:label "Construction completion (notification)" ;
+  rdfs:subClassOf prom-bpr:A_3_1_SiteInspection ;
+.
+prom-bpr:A_3_1_3_ConformityCertificate
+  rdf:type owl:Class ;
+  rdfs:label "Submit construction conformity certificate" ;
+  rdfs:subClassOf prom-bpr:A_3_1_SiteInspection ;
+.
+prom-bpr:A_3_1_4_CompletionCertificate
+  rdf:type owl:Class ;
+  rdfs:label "Issuance of completion certificate (occupancy permit)" ;
+  rdfs:subClassOf prom-bpr:A_3_1_SiteInspection ;
+.
+prom-bpr:A_3_1_SiteInspection
+  rdf:type owl:Class ;
+  rdfs:label "Site Inspection" ;
+  rdfs:subClassOf prom-bpr:A_3_PostPhase ;
+.
+prom-bpr:A_3_2_Archiving
+  rdf:type owl:Class ;
+  rdfs:label "Archiving" ;
+  rdfs:subClassOf prom-bpr:A_3_PostPhase ;
+.
+prom-bpr:A_3_PostPhase
+  rdf:type owl:Class ;
+  rdfs:label "Post phase" ;
+  rdfs:subClassOf <https://w3id.org/ontobpr#Activity> ;
+.
+prom-bpr:EventLogCompound
+  rdf:type owl:Class ;
+  rdfs:label "Event log compund" ;
+  rdfs:subClassOf <https://w3id.org/ontobpr#Activity> ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty prom-bpr:hasEventLogEntry ;
+      owl:someValuesFrom prom-bpr:EventLogEntry ;
+    ] ;
+.
+prom-bpr:EventLogEntry
+  rdf:type owl:Class ;
+  rdfs:label "Event log entry" ;
+  rdfs:subClassOf prov:Activity ;
+.
+prom-bpr:UnclassifiedEventLogEntry
+  rdf:type owl:Class ;
+  rdfs:label "Unclassified event log entry" ;
+  rdfs:subClassOf prom-bpr:EventLogEntry ;
+.
+prom-bpr:hasEventLogEntry
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain prom-bpr:EventLogCompound ;
+  rdfs:label "has event log entry" ;
+  rdfs:range prom-bpr:EventLogEntry ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+.
