@@ -1,0 +1,2466 @@
+# baseURI: https://w3id.org/prom-bpr
+# imports: http://www.w3.org/ns/prov-o#
+# imports: https://w3id.org/ontobpr
+# prefix: prom-bpr
+
+@prefix Container: <https://standards.iso.org/iso/21597/-1/ed-1/en/Container#> .
+@prefix ct: <https://standards.iso.org/iso/21597/-1/ed-1/en/Container#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix isoprops: <https://w3id.org/isoprops#> .
+@prefix obpa: <https://w3id.org/obpa#> .
+@prefix ontobpr: <https://w3id.org/ontobpr> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prom-bpr: <https://w3id.org/prom-bpr#> .
+@prefix prom-bpr-instances: <https://w3id.org/prom-bpr-instances#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://w3id.org/ontobpr#Activity>
+  rdfs:subClassOf prov:Activity ;
+.
+<https://w3id.org/ontobpr#afterActivity>
+  rdf:type owl:ObjectProperty ;
+.
+<https://w3id.org/prom-bpr>
+  rdf:type owl:Ontology ;
+  dc:created "2026-01-19"^^xsd:date ;
+  dc:creator [
+      rdf:type schema:Person ;
+      schema:email <mailto:judith.fauth@rub.de> ;
+      schema:identifier <https://orcid.org/0000-0002-9078-8393> ;
+      schema:memberOf [
+          schema:identifier <https://www.linkedin.com/in/judith-fauth-5b5137bb> ;
+          schema:name "Technical University of Munich, DE" ;
+        ] ;
+      schema:name "Dr. Judith Fauth" ;
+    ] ;
+  dc:creator [
+      rdf:type schema:Person ;
+      schema:email <mailto:philipp.hagedorn-n6v@rub.de> ;
+      schema:identifier <https://orcid.org/0000-0002-6249-243X> ;
+      schema:memberOf [
+          schema:identifier <https://www.inf.bi.ruhr-uni-bochum.de/iib/lehrstuhl/mitarbeiter/philipp_hagedorn.html.en> ;
+          schema:name "Ruhr University Bochum, DE" ;
+        ] ;
+      schema:name "Dr. Philipp Hagedorn" ;
+    ] ;
+  dc:creator [
+      rdf:type schema:Person ;
+      schema:email <mailto:ronny.weinkauf@hs-merseburg.de> ;
+      schema:identifier <https://orcid.org/0009-0003-6827-0154> ;
+      schema:memberOf [
+          schema:identifier <https://www.hs-merseburg.de/hochschule/information/personenverzeichnis/details/person/weinkauf-ronny-613/> ;
+          schema:name "Merseburg University of Applied Sciences, DE" ;
+        ] ;
+      schema:name "Prof. Dr. Ronny Weinkauf" ;
+    ] ;
+  dc:license <https://creativecommons.org/licenses/by/4.0/> ;
+  dc:modified "2026-01-23"^^xsd:date ;
+  dc:source "https://github.com/RUB-Informatik-im-Bauwesen/prom-bpr"^^xsd:anyURI ;
+  dc:title "PROM-BPR is OntoBPR for process mining"@en ;
+  vann:preferredNamespacePrefix "prom-bpr" ;
+  vann:preferredNamespaceUri "https://w3id.org/prom-bpr#"^^xsd:anyURI ;
+  <http://purl.org/vocommons/voaf#extends> <https://w3id.org/ontobpr> ;
+  rdfs:comment "Description"@en ;
+  rdfs:label "PROM-BPR is OntoBPR for process mining" ;
+  owl:imports <http://www.w3.org/ns/prov-o#> ;
+  owl:imports <https://w3id.org/ontobpr> ;
+.
+prom-bpr:A_1_1_1_ObtainSiteValidityCertificates
+  rdf:type owl:Class ;
+  rdfs:label "Obtain site validity certificates" ;
+  rdfs:subClassOf prom-bpr:A_1_1_PreConsultation ;
+.
+prom-bpr:A_1_1_2_ParticipationByApplicant
+  rdf:type owl:Class ;
+  rdfs:label "Participation by applicant - collect & Assess statements" ;
+  rdfs:subClassOf prom-bpr:A_1_1_PreConsultation ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass prom-bpr:A_1_1_1_ObtainSiteValidityCertificates ;
+      owl:onProperty <https://w3id.org/ontobpr#afterActivity> ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+prom-bpr:A_1_1_3_CompileApplicationRequestRequirementList
+  rdf:type owl:Class ;
+  rdfs:label "Compile application request requirement list" ;
+  rdfs:subClassOf prom-bpr:A_1_1_PreConsultation ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass prom-bpr:A_1_1_2_ParticipationByApplicant ;
+      owl:onProperty <https://w3id.org/ontobpr#afterActivity> ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+prom-bpr:A_1_1_4_ZoningReviewApplicant
+  rdf:type owl:Class ;
+  rdfs:label "Zoning review process by applicant" ;
+  rdfs:subClassOf prom-bpr:A_1_1_PreConsultation ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass prom-bpr:A_1_1_3_CompileApplicationRequestRequirementList ;
+      owl:onProperty <https://w3id.org/ontobpr#afterActivity> ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+prom-bpr:A_1_1_PreConsultation
+  rdf:type owl:Class ;
+  rdfs:comment "Giving advice by the building control authority before an application is submitted"@en ;
+  rdfs:label "Pre Consultation"@en ;
+  rdfs:subClassOf prom-bpr:A_1_PrePhase ;
+.
+prom-bpr:A_1_2_SubmissionOfDocuments
+  rdf:type owl:Class ;
+  rdfs:label "Submission of documents" ;
+  rdfs:subClassOf prom-bpr:A_1_PrePhase ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass prom-bpr:A_1_1_PreConsultation ;
+      owl:onProperty <https://w3id.org/ontobpr#afterActivity> ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+prom-bpr:A_1_PrePhase
+  rdf:type owl:Class ;
+  rdfs:label "Pre Phase"@en ;
+  rdfs:subClassOf <https://w3id.org/ontobpr#Activity> ;
+.
+prom-bpr:A_2_1_1_ReceiveSubmission
+  rdf:type owl:Class ;
+  rdfs:comment "The submission of a building application where different conditions and requirements needs to be considered." ;
+  rdfs:label "Receive submission" ;
+  rdfs:subClassOf prom-bpr:A_2_1_AdministrativeCheck ;
+.
+prom-bpr:A_2_1_2_RegistrationOfApplication
+  rdf:type owl:Class ;
+  rdfs:label "Registration of application" ;
+  rdfs:subClassOf prom-bpr:A_2_1_AdministrativeCheck ;
+.
+prom-bpr:A_2_1_3_CheckPayment
+  rdf:type owl:Class ;
+  rdfs:label "Check/ request payment of taxes and fees" ;
+  rdfs:subClassOf prom-bpr:A_2_1_AdministrativeCheck ;
+.
+prom-bpr:A_2_1_4_ImportApplication
+  rdf:type owl:Class ;
+  rdfs:label "Import application into a public administration software" ;
+  rdfs:subClassOf prom-bpr:A_2_1_AdministrativeCheck ;
+.
+prom-bpr:A_2_1_5_CompletenessCheck
+  rdf:type owl:Class ;
+  rdfs:label "Completeness check" ;
+  rdfs:subClassOf prom-bpr:A_2_1_AdministrativeCheck ;
+.
+prom-bpr:A_2_1_AdministrativeCheck
+  rdf:type owl:Class ;
+  rdfs:comment """An administrative process comprising confirmation of receipt, registration, and checking of the completeness of the
+submission.""" ;
+  rdfs:label "Administrative check" ;
+  rdfs:subClassOf prom-bpr:A_2_ReviewPhase ;
+.
+prom-bpr:A_2_2_Assignment
+  rdf:type owl:Class ;
+  rdfs:comment "Passing on an operation or content review." ;
+  rdfs:label "Assignment (to plan checker)" ;
+  rdfs:subClassOf prom-bpr:A_2_ReviewPhase ;
+  owl:equivalentClass <https://w3id.org/ontobpr#Assignment> ;
+.
+prom-bpr:A_2_3_1_PublicAgencies
+  rdf:type owl:Class ;
+  rdfs:label "Public agencies participation" ;
+  rdfs:subClassOf prom-bpr:A_2_3_ParticipationOfOtherAgencies ;
+.
+prom-bpr:A_2_3_2_PrivateAgencies
+  rdf:type owl:Class ;
+  rdfs:label "Private agencies participation" ;
+  rdfs:subClassOf prom-bpr:A_2_3_ParticipationOfOtherAgencies ;
+.
+prom-bpr:A_2_3_3_InternalReferral
+  rdf:type owl:Class ;
+  rdfs:label "Internal referral department participation" ;
+  rdfs:subClassOf prom-bpr:A_2_3_ParticipationOfOtherAgencies ;
+.
+prom-bpr:A_2_3_4_InvolvementOfReviewBoard
+  rdf:type owl:Class ;
+  rdfs:label "Involvement of review Board" ;
+  rdfs:subClassOf prom-bpr:A_2_3_ParticipationOfOtherAgencies ;
+.
+prom-bpr:A_2_3_ParticipationOfOtherAgencies
+  rdf:type owl:Class ;
+  rdfs:comment """Participation of other involved agencies, local authorities and any specialist authorities (for ancillary construction law),
+utility companies, and other experts""" ;
+  rdfs:label "Participation of other agencies" ;
+  rdfs:subClassOf prom-bpr:A_2_ReviewPhase ;
+.
+prom-bpr:A_2_4_1_NeighbourParticipation
+  rdf:type owl:Class ;
+  rdfs:label "Neighbour participation" ;
+  rdfs:subClassOf prom-bpr:A_2_4_ParticipationOfPublic ;
+.
+prom-bpr:A_2_4_2_PublicInquiry
+  rdf:type owl:Class ;
+  rdfs:label "Public inquiry" ;
+  rdfs:subClassOf prom-bpr:A_2_4_ParticipationOfPublic ;
+.
+prom-bpr:A_2_4_ParticipationOfPublic
+  rdf:type owl:Class ;
+  rdfs:comment """Participation of interested or concerned people that is essential for promoting transparency, inclusivity, and informed
+decision-making""" ;
+  rdfs:label "Participation of public" ;
+  rdfs:subClassOf prom-bpr:A_2_ReviewPhase ;
+.
+prom-bpr:A_2_5_10_InternalDiscussion
+  rdf:type owl:Class ;
+  rdfs:label "Internal discussion" ;
+  rdfs:subClassOf prom-bpr:A_2_5_ContentCheck ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass prom-bpr:A_2_5_9_PropertyConditionCheck ;
+      owl:onProperty <https://w3id.org/ontobpr#afterActivity> ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+prom-bpr:A_2_5_11_ConsultationWithApplicant
+  rdf:type owl:Class ;
+  rdfs:label "Consultation with applicant" ;
+  rdfs:subClassOf prom-bpr:A_2_5_ContentCheck ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass prom-bpr:A_2_5_10_InternalDiscussion ;
+      owl:onProperty <https://w3id.org/ontobpr#afterActivity> ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+prom-bpr:A_2_5_12_MeetingWithSupervisor
+  rdf:type owl:Class ;
+  rdfs:label "Meeting with supervisor" ;
+  rdfs:subClassOf prom-bpr:A_2_5_ContentCheck ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass prom-bpr:A_2_5_11_ConsultationWithApplicant ;
+      owl:onProperty <https://w3id.org/ontobpr#afterActivity> ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+prom-bpr:A_2_5_13_SecurityCommission
+  rdf:type owl:Class ;
+  rdfs:label "Security commission" ;
+  rdfs:subClassOf prom-bpr:A_2_5_ContentCheck ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass prom-bpr:A_2_5_12_MeetingWithSupervisor ;
+      owl:onProperty <https://w3id.org/ontobpr#afterActivity> ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+prom-bpr:A_2_5_14_RecommendationToStatutoryPlanningCommittee
+  rdf:type owl:Class ;
+  rdfs:label "Recommendation to statutory planning committee (SPC)" ;
+  rdfs:subClassOf prom-bpr:A_2_5_ContentCheck ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass prom-bpr:A_2_5_13_SecurityCommission ;
+      owl:onProperty <https://w3id.org/ontobpr#afterActivity> ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+prom-bpr:A_2_5_15_ReviewPlanningPoliciesByTownPlanningCommittee
+  rdf:type owl:Class ;
+  rdfs:label "Review planning policies (by town planning committee)" ;
+  rdfs:subClassOf prom-bpr:A_2_5_ContentCheck ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass prom-bpr:A_2_5_14_RecommendationToStatutoryPlanningCommittee ;
+      owl:onProperty <https://w3id.org/ontobpr#afterActivity> ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+prom-bpr:A_2_5_1_ContentCheck
+  rdf:type owl:Class ;
+  rdfs:comment "The examination of the submission against substantive planning and building law" ;
+  rdfs:label "Content check" ;
+  rdfs:subClassOf prom-bpr:A_2_5_ContentCheck ;
+  owl:equivalentClass <https://w3id.org/ontobprContentReview> ;
+.
+prom-bpr:A_2_5_2_BuildingCommitteeMeeting
+  rdf:type owl:Class ;
+  rdfs:label "Building committee meeting" ;
+  rdfs:subClassOf prom-bpr:A_2_5_ContentCheck ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass prom-bpr:A_2_5_1_ContentCheck ;
+      owl:onProperty <https://w3id.org/ontobpr#afterActivity> ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+prom-bpr:A_2_5_3_PlanningZoningReview
+  rdf:type owl:Class ;
+  rdfs:label "Planning / zoning review" ;
+  rdfs:subClassOf prom-bpr:A_2_5_ContentCheck ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass prom-bpr:A_2_5_2_BuildingCommitteeMeeting ;
+      owl:onProperty <https://w3id.org/ontobpr#afterActivity> ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+prom-bpr:A_2_5_4_BuildingTechnicalReview
+  rdf:type owl:Class ;
+  rdfs:label "Building / technical review" ;
+  rdfs:subClassOf prom-bpr:A_2_5_ContentCheck ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass prom-bpr:A_2_5_3_PlanningZoningReview ;
+      owl:onProperty <https://w3id.org/ontobpr#afterActivity> ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+prom-bpr:A_2_5_5_ConstructionLawReview
+  rdf:type owl:Class ;
+  rdfs:label "Construction law review" ;
+  rdfs:subClassOf prom-bpr:A_2_5_ContentCheck ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass prom-bpr:A_2_5_4_BuildingTechnicalReview ;
+      owl:onProperty <https://w3id.org/ontobpr#afterActivity> ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+prom-bpr:A_2_5_6_MechanicalPlanExamination
+  rdf:type owl:Class ;
+  rdfs:label "Mechanical plan examination" ;
+  rdfs:subClassOf prom-bpr:A_2_5_ContentCheck ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass prom-bpr:A_2_5_5_ConstructionLawReview ;
+      owl:onProperty <https://w3id.org/ontobpr#afterActivity> ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+prom-bpr:A_2_5_7_FireRevisionExamination
+  rdf:type owl:Class ;
+  rdfs:label "Fire revision examination" ;
+  rdfs:subClassOf prom-bpr:A_2_5_ContentCheck ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass prom-bpr:A_2_5_6_MechanicalPlanExamination ;
+      owl:onProperty <https://w3id.org/ontobpr#afterActivity> ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+prom-bpr:A_2_5_8_PrepareTechnicalReport
+  rdf:type owl:Class ;
+  rdfs:label "Prepare technical report" ;
+  rdfs:subClassOf prom-bpr:A_2_5_ContentCheck ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass prom-bpr:A_2_5_7_FireRevisionExamination ;
+      owl:onProperty <https://w3id.org/ontobpr#afterActivity> ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+prom-bpr:A_2_5_9_PropertyConditionCheck
+  rdf:type owl:Class ;
+  rdfs:label "Property condition check" ;
+  rdfs:subClassOf prom-bpr:A_2_5_ContentCheck ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass prom-bpr:A_2_5_8_PrepareTechnicalReport ;
+      owl:onProperty <https://w3id.org/ontobpr#afterActivity> ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+prom-bpr:A_2_5_ContentCheck
+  rdf:type owl:Class ;
+  rdfs:comment "The examination of the submission against substantive planning and building law" ;
+  rdfs:label "Content check" ;
+  rdfs:subClassOf prom-bpr:A_2_ReviewPhase ;
+  owl:equivalentClass <https://w3id.org/ontobpr#ContentReview> ;
+.
+prom-bpr:A_2_6_1_CompletingDocumentation
+  rdf:type owl:Class ;
+  rdfs:label "Completing documentation" ;
+  rdfs:subClassOf prom-bpr:A_2_6_IssuingNotificationLetter ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass prom-bpr:A_2_6_IssuingNotificationLetter ;
+      owl:onProperty <https://w3id.org/ontobpr#afterActivity> ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+prom-bpr:A_2_6_2_RequestFurtherDocumentsIfNeeded
+  rdf:type owl:Class ;
+  rdfs:label "Request further documents (if needed)" ;
+  rdfs:subClassOf prom-bpr:A_2_6_IssuingNotificationLetter ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass prom-bpr:A_2_6_1_CompletingDocumentation ;
+      owl:onProperty <https://w3id.org/ontobpr#afterActivity> ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+prom-bpr:A_2_6_3_CheckStampsPayment
+  rdf:type owl:Class ;
+  rdfs:label "Check stamps, payment" ;
+  rdfs:subClassOf prom-bpr:A_2_6_IssuingNotificationLetter ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass prom-bpr:A_2_6_2_RequestFurtherDocumentsIfNeeded ;
+      owl:onProperty <https://w3id.org/ontobpr#afterActivity> ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+prom-bpr:A_2_6_4_CheckParticipationStatements
+  rdf:type owl:Class ;
+  rdfs:label "Check participation statements" ;
+  rdfs:subClassOf prom-bpr:A_2_6_IssuingNotificationLetter ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass prom-bpr:A_2_6_3_CheckStampsPayment ;
+      owl:onProperty <https://w3id.org/ontobpr#afterActivity> ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+prom-bpr:A_2_6_5_ApplicantPresentsBuildingApplication
+  rdf:type owl:Class ;
+  rdfs:label "Applicant presents building application" ;
+  rdfs:subClassOf prom-bpr:A_2_6_IssuingNotificationLetter ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass prom-bpr:A_2_6_4_CheckParticipationStatements ;
+      owl:onProperty <https://w3id.org/ontobpr#afterActivity> ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+prom-bpr:A_2_6_6_IssueNotificationLetterForConstructionStart
+  rdf:type owl:Class ;
+  rdfs:label "Issue notification letter for construction start" ;
+  rdfs:subClassOf prom-bpr:A_2_6_IssuingNotificationLetter ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass prom-bpr:A_2_6_5_ApplicantPresentsBuildingApplication ;
+      owl:onProperty <https://w3id.org/ontobpr#afterActivity> ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+prom-bpr:A_2_6_IssuingNotificationLetter
+  rdf:type owl:Class ;
+  rdfs:comment """The issuance of the decision as to whether a project is eligible for a building permit or license to occupy and any possible
+enforcement action.""" ;
+  rdfs:label "Issuing notification letter " ;
+  rdfs:subClassOf prom-bpr:A_2_ReviewPhase ;
+  owl:equivalentClass <https://w3id.org/ontobpr#IssuingNotificationLetter> ;
+.
+prom-bpr:A_2_ReviewPhase
+  rdf:type owl:Class ;
+  rdfs:label "Review phase" ;
+  rdfs:subClassOf <https://w3id.org/ontobpr#Activity> ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass prom-bpr:A_1_PrePhase ;
+      owl:onProperty <https://w3id.org/ontobpr#afterActivity> ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+prom-bpr:A_3_1_1_ApprovalConstructionConformity
+  rdf:type owl:Class ;
+  rdfs:label "Obtain approval of the construction conformity" ;
+  rdfs:subClassOf prom-bpr:A_3_1_SiteInspection ;
+.
+prom-bpr:A_3_1_2_ConstructionCompletion
+  rdf:type owl:Class ;
+  rdfs:label "Construction completion (notification)" ;
+  rdfs:subClassOf prom-bpr:A_3_1_SiteInspection ;
+.
+prom-bpr:A_3_1_3_ConformityCertificate
+  rdf:type owl:Class ;
+  rdfs:label "Submit construction conformity certificate" ;
+  rdfs:subClassOf prom-bpr:A_3_1_SiteInspection ;
+.
+prom-bpr:A_3_1_4_CompletionCertificate
+  rdf:type owl:Class ;
+  rdfs:label "Issuance of completion certificate (occupancy permit)" ;
+  rdfs:subClassOf prom-bpr:A_3_1_SiteInspection ;
+.
+prom-bpr:A_3_1_SiteInspection
+  rdf:type owl:Class ;
+  rdfs:label "Site Inspection" ;
+  rdfs:subClassOf prom-bpr:A_3_PostPhase ;
+.
+prom-bpr:A_3_2_Archiving
+  rdf:type owl:Class ;
+  rdfs:label "Archiving" ;
+  rdfs:subClassOf prom-bpr:A_3_PostPhase ;
+.
+prom-bpr:A_3_PostPhase
+  rdf:type owl:Class ;
+  rdfs:label "Post phase" ;
+  rdfs:subClassOf <https://w3id.org/ontobpr#Activity> ;
+.
+prom-bpr:EventLogCompound
+  rdf:type owl:Class ;
+  rdfs:label "Event log compund" ;
+  rdfs:subClassOf <https://w3id.org/ontobpr#Activity> ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty prom-bpr:hasEventLogEntry ;
+      owl:someValuesFrom prom-bpr:EventLogEntry ;
+    ] ;
+.
+prom-bpr:EventLogCompound_1
+  rdf:type prom-bpr:A_2_1_2_RegistrationOfApplication ;
+  rdf:type prom-bpr:EventLogCompound ;
+  rdfs:label "Event log compound 1" ;
+  prom-bpr:hasEventLogEntry prom-bpr-instances:aktenzeichen_vergeben_Z2KkR0rLSomrnUI8yIgEqg ;
+.
+prom-bpr:EventLogCompound_2
+  rdf:type prom-bpr:A_2_1_1_ReceiveSubmission ;
+  rdf:type prom-bpr:EventLogCompound ;
+  rdfs:label "Receive Submission" ;
+  prom-bpr:hasEventLogEntry prom-bpr-instances:baugenehmigung_antrag_eingegangen_4NKhZbJTQziPXIm3g2l2Yg ;
+.
+prom-bpr:EventLogCompound_3
+  rdf:type prom-bpr:A_2_1_1_ReceiveSubmission ;
+  rdf:type prom-bpr:EventLogCompound ;
+  rdfs:label "Receive Submission" ;
+  prom-bpr:hasEventLogEntry prom-bpr-instances:ihr_anliegen_ist_eingegangen_ebxrBjFLQrC4j1RrWYotXA ;
+.
+prom-bpr:EventLogEntry
+  rdf:type owl:Class ;
+  rdfs:label "Event log entry" ;
+  rdfs:subClassOf prov:Activity ;
+.
+prom-bpr:UnclassifiedEventLogEntry
+  rdf:type owl:Class ;
+  rdfs:label "Unclassified event log entry" ;
+  rdfs:subClassOf prom-bpr:EventLogEntry ;
+.
+prom-bpr:hasEventLogEntry
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain prom-bpr:EventLogCompound ;
+  rdfs:label "has event log entry" ;
+  rdfs:range prom-bpr:EventLogEntry ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+.
+prom-bpr-instances:aktenzeichen_hinzufuegen_3AdpdEZ8Sw6EWBReTUY2Jw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aktenzeichen hinzufügen"@de ;
+  prom-bpr:occurrences 22 ;
+.
+prom-bpr-instances:aktenzeichen_vergeben_Z2KkR0rLSomrnUI8yIgEqg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aktenzeichen vergeben"@de ;
+  prom-bpr:occurrences 364 ;
+.
+prom-bpr-instances:antwort_auf_nachforderung_ErzatgHXQDWqV08Uyk4FEw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Antwort auf Nachforderung"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_abbruch_JoJ2gyF2RWOE2EWM9f8RiQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Abbruch ***"@de ;
+  prom-bpr:occurrences 12 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_anbau_v_HPTjlDbSTW2EvjOKnUuRRw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Anbau v ***"@de ;
+  prom-bpr:occurrences 6 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_anbauge_lJ1Xh1QWR0u6vcwNmMeQxQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Anbauge ***"@de ;
+  prom-bpr:occurrences 8 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_ausbau_VLYUWdSNSVebgEsxx6rUWg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Ausbau  ***"@de ;
+  prom-bpr:occurrences 4 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_behelfs_jrtMBmLuTqa31TMZxfE0Gg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Behelfs ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_d_i_g_i_-qdJI-dPSOmJyi1BZK95xQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: D I G I ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_digital_9m-DIf0gScOInAZJskVlgQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: DIGITAL ***"@de ;
+  prom-bpr:occurrences 12 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_ehemali_ENWs1z1sTa-W5THe0ivUZw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Ehemali ***"@de ;
+  prom-bpr:occurrences 18 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_einbau_ZQx-hjcsQze7uILJ5Ayqkg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Einbau  ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_einbau_lVDvfo33Qv24w1-ZS0yVVA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Einbau  ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_erricht_D1PcgiftS_u28YsCQQEXvw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Erricht ***"@de ;
+  prom-bpr:occurrences 8 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_erricht_yxuKTY8SSoOLQzgqql-O3g
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Erricht ***"@de ;
+  prom-bpr:occurrences 14 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_ersatzb_KMp5hnMPRnSqMKKDycb5Xg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Ersatzb ***"@de ;
+  prom-bpr:occurrences 12 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_erweite_7gaY99tvT0Sb9bcm2FKKog
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Erweite ***"@de ;
+  prom-bpr:occurrences 6 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_fassade_Dg1Fyib2SXSggx63csOKFw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Fassade ***"@de ;
+  prom-bpr:occurrences 10 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_focke_m_s1IH_wdmReWW351uX8vbkA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Focke M ***"@de ;
+  prom-bpr:occurrences 16 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_geruests_Hey6IkJ-RK-tr0oQgu7hlg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Gerüsts ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_herstel_JfNwERgRTjOnLZbfykGl_w
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Herstel ***"@de ;
+  prom-bpr:occurrences 16 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_im_zuge_HZC8romnTjeFbR0mT3EvnA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Im Zuge ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_im_zuge_mhoF9tAzQdu-LCKnSoovOA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Im Zuge ***"@de ;
+  prom-bpr:occurrences 8 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_legalis_3upQojeZRaaLIWWXp_efkQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Legalis ***"@de ;
+  prom-bpr:occurrences 8 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_mehrfam_lKvnjK85RpCsKxwF-K30Bw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Mehrfam ***"@de ;
+  prom-bpr:occurrences 10 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_mobilba_B7i-GtRESbqTiZBGsPVJAg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Mobilba ***"@de ;
+  prom-bpr:occurrences 14 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_neubau_7wsR-bIyRwa3aKGFLQiysA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Neubau  ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_neubau_A6gLy91pQ1y8Bf9AggL-YA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Neubau  ***"@de ;
+  prom-bpr:occurrences 22 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_neubau_A71ddoYcRH6obbfFUr13ig
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Neubau  ***"@de ;
+  prom-bpr:occurrences 8 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_neubau_CixiN6dSRoKa_HxnokAuvQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Neubau  ***"@de ;
+  prom-bpr:occurrences 16 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_neubau_LCWxBr3LTnaFvKSA-L_uKw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Neubau  ***"@de ;
+  prom-bpr:occurrences 14 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_neubau_MjbFDVAbSNSI2Bjc99nUQg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Neubau  ***"@de ;
+  prom-bpr:occurrences 12 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_neubau_Pd2trQkaRB6BV_D3Ch-F5Q
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Neubau  ***"@de ;
+  prom-bpr:occurrences 14 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_neubau_PpYT1DltRD60FnhC0ISvpw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Neubau  ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_neubau_Sv3dfvGpQGCwmJkGr7GNBA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Neubau  ***"@de ;
+  prom-bpr:occurrences 4 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_neubau_UBJWqYZLR6anrBMDjJO2Lg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Neubau  ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_neubau_W2Vv-E0ES1qry89OspMd0A
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Neubau  ***"@de ;
+  prom-bpr:occurrences 10 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_neubau_aCgyVf7nR8CG55J9zCWmHQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Neubau  ***"@de ;
+  prom-bpr:occurrences 8 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_neubau_kgC6N9cLTcuMsCUgvRioQw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Neubau  ***"@de ;
+  prom-bpr:occurrences 6 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_neubau_l1fDGtnzT1-3XjoUZIqZgw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Neubau  ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_neubau_mFsYa80RSTKZElIw1n55xg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Neubau  ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_neubau_oOMhf-giQniZMDB2hfFdFA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Neubau  ***"@de ;
+  prom-bpr:occurrences 12 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_neubau_oQXBisKhRX2u97KaRQLMNQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Neubau  ***"@de ;
+  prom-bpr:occurrences 6 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_neubau_sMzEZyQHR-CbiPA61NQWHQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Neubau  ***"@de ;
+  prom-bpr:occurrences 4 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_nutzung_-hMq9M2pQQq42CyO_LWSNQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Nutzung ***"@de ;
+  prom-bpr:occurrences 6 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_nutzung_0fQ5CtZvRkq5H1TXOLe1wA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Nutzung ***"@de ;
+  prom-bpr:occurrences 4 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_nutzung_4x7RBif7Tum-dOW-FCBsZA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Nutzung ***"@de ;
+  prom-bpr:occurrences 10 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_nutzung_7NGqFsl6QH6lhCyyy56ywQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Nutzung ***"@de ;
+  prom-bpr:occurrences 4 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_nutzung_9ujdrakfQAWLVCg3p1xvyQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Nutzung ***"@de ;
+  prom-bpr:occurrences 10 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_nutzung_FlUY3TxeQbq27RtmcFuEfw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Nutzung ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_nutzung_KixsrZbxRA2eHf7iiIG0Aw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Nutzung ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_nutzung_LWxxZFjVR0CpCkDSP88G7Q
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Nutzung ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_nutzung_Qi3XWzu3SDyj00iSW21FOw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Nutzung ***"@de ;
+  prom-bpr:occurrences 6 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_nutzung_ezdHwu5pQkuHRJhIsQHqkw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Nutzung ***"@de ;
+  prom-bpr:occurrences 4 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_nutzung_hudRCR9QR4OanJPph235JA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Nutzung ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_nutzung_iuWpShInQ36FOtdHTTtRnQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Nutzung ***"@de ;
+  prom-bpr:occurrences 4 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_nutzung_niqgfm7yRLefhgaW0AkssQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Nutzung ***"@de ;
+  prom-bpr:occurrences 4 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_nutzung_o0KV9OP5SqC2yumpezxjrQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Nutzung ***"@de ;
+  prom-bpr:occurrences 14 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_nutzung_o5f9tn2gTOaVQgpfAv79kA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Nutzung ***"@de ;
+  prom-bpr:occurrences 10 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_nutzung_pgNSSvwZRd2eqmK3Sj2PVQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Nutzung ***"@de ;
+  prom-bpr:occurrences 4 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_nutzung_sFhyx96lShuUgmBl674gQQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Nutzung ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_nutzung_sH2GKwg_RjuMyWQk1OkXxw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Nutzung ***"@de ;
+  prom-bpr:occurrences 6 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_nutzung_xlvcNfwsRJ2QDg7g4-in1A
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Nutzung ***"@de ;
+  prom-bpr:occurrences 4 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_sanieru_4wkT6-Y7SneFnhOB42NbzQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Sanieru ***"@de ;
+  prom-bpr:occurrences 10 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_sanieru_XBsACxh6RMiLFElkpkk7sg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Sanieru ***"@de ;
+  prom-bpr:occurrences 8 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_sicherh_DiJk0pLTR7muFJLqpFP5bg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Sicherh ***"@de ;
+  prom-bpr:occurrences 10 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_spurwer_RRrSHCHGTAq_N5BxHp2MtQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: SPURWER ***"@de ;
+  prom-bpr:occurrences 12 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_teilruec_B43dATLySO6lz7POJSSd5w
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Teilrüc ***"@de ;
+  prom-bpr:occurrences 22 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_test_n_5UR-KczzRdSwzuXyH2JrAQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: TEST: N ***"@de ;
+  prom-bpr:occurrences 6 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_ueberdac_3LxK14B4QuKeuJvl7-6w0g
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Überdac ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_umbau_Y5JRZ3bJTECChffqa4hjIA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Umbau,  ***"@de ;
+  prom-bpr:occurrences 8 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_umbau_a_hUcGkvgiSKK9zbIxAaGluQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Umbau/A ***"@de ;
+  prom-bpr:occurrences 4 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_umbau_e_2kMUesdUQGOpIb5Nqpe5EQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Umbau e ***"@de ;
+  prom-bpr:occurrences 24 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_umbau_e_AVRXv2HYSa-J8PL6wqFfbA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Umbau E ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_umbau_e_lsPxfkmLS6Wm_ZPTS75TNQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Umbau e ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_umbau_e_tU_7DbhmR4OpIuOpjxg14w
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Umbau e ***"@de ;
+  prom-bpr:occurrences 6 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_umbau_j_-6sfIQd0RKyNZfhIxwTIUA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Umbau J ***"@de ;
+  prom-bpr:occurrences 14 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_umnutzu_71XkJGufQAWoq1-TyTPxSQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Umnutzu ***"@de ;
+  prom-bpr:occurrences 4 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_umnutzu_75JaEUk_T-eLBzq4k6hxAw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Umnutzu ***"@de ;
+  prom-bpr:occurrences 18 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_umnutzu_UrtRruxYR1KWKHV87vvEGw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Umnutzu ***"@de ;
+  prom-bpr:occurrences 8 ;
+.
+prom-bpr-instances:aufforderung_zu_pruefung_und_stellungnahme_umnutzu__A71j7tEQLuuYKO5QeL5pQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Aufforderung zu Prüfung und Stellungnahme: Umnutzu ***"@de ;
+  prom-bpr:occurrences 6 ;
+.
+prom-bpr-instances:auto_status_wechsel_abgeschlossen_94drJ2JeQ1-CeO0k3d29FA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "[auto] Status Wechsel abgeschlossen"@de ;
+  prom-bpr:occurrences 22 ;
+.
+prom-bpr-instances:auto_status_wechsel_in_bearbeitung_4BWbMTamQd6pVu9kfgVW9Q
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "[auto] Status Wechsel in Bearbeitung"@de ;
+  prom-bpr:occurrences 2824 ;
+.
+prom-bpr-instances:auto_webrequest_fuer_xoev_kommunikation_SJYpivk1RBGG_jaRShoTDw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "[auto] WebRequest für XÖV Kommunikation"@de ;
+  prom-bpr:occurrences 1724 ;
+.
+prom-bpr-instances:auto_xbau_uebertragung_vBm9N_CUQIWvT5IyPDR6bQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "[auto] XBau Übertragung"@de ;
+  prom-bpr:occurrences 346 ;
+.
+prom-bpr-instances:auto_xslt_fuer_xbau_0202_VDqVzpYAQGCdJYH-YWYAhQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "[auto] XSLT für XBau 0202"@de ;
+  prom-bpr:occurrences 822 ;
+.
+prom-bpr-instances:auto_xslt_fuer_xbau_0204_DqLSWKOyRbOy3EDYUNqGcw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "[auto] XSLT für XBau 0204"@de ;
+  prom-bpr:occurrences 76 ;
+.
+prom-bpr-instances:auto_xslt_fuer_xbau_0301__K1InuvdTBGCzr6BHkU30A
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "[auto] XSLT für XBau 0301"@de ;
+  prom-bpr:occurrences 58 ;
+.
+prom-bpr-instances:auto_xslt_fuer_xbau_0303_3sXBst-oS4usdA4ztNnIwA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "[auto] XSLT für XBau 0303"@de ;
+  prom-bpr:occurrences 460 ;
+.
+prom-bpr-instances:auto_xslt_fuer_xbau_1142_t75exE2cSUO9R5CBNGbfVQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "[auto] XSLT für XBau 1142"@de ;
+  prom-bpr:occurrences 318 ;
+.
+prom-bpr-instances:baugenehmigung_antrag_eingegangen_4NKhZbJTQziPXIm3g2l2Yg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Baugenehmigung Antrag eingegangen"@de ;
+  prom-bpr:occurrences 322 ;
+.
+prom-bpr-instances:bescheid_bekanntgeben_gFlzls22RO-dGi0BKdExUw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Bescheid bekanntgeben"@de ;
+  prom-bpr:occurrences 34 ;
+.
+prom-bpr-instances:beteiligung_ortsaemter_anfordern_iJUWmiD1TDGLmBunxOM3Tw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Beteiligung Ortsämter anfordern"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:beteiligung_toeb_anfordern_YyH-yd9ESiGgqEtYp1KEiQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Beteiligung TöB anfordern"@de ;
+  prom-bpr:occurrences 14 ;
+.
+prom-bpr-instances:geaenderte_antragsunterlagen_nachreichen_GSrE4xYeS6ytHTjrLxv9rA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Geänderte Antragsunterlagen nachreichen"@de ;
+  prom-bpr:occurrences 822 ;
+.
+prom-bpr-instances:ihr_aenderungen_ergaenzung_ist_eingegangen_iTZbm4g3SZOFUv_rT0QCDQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Ihr Änderungen/Ergänzung ist eingegangen"@de ;
+  prom-bpr:occurrences 686 ;
+.
+prom-bpr-instances:ihr_anliegen_ist_eingegangen_ebxrBjFLQrC4j1RrWYotXA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Ihr Anliegen ist eingegangen"@de ;
+  prom-bpr:occurrences 516 ;
+.
+prom-bpr-instances:nachforderung_aufforderung_zu_pruefung_und_stellun_1eIuMMItT8Obbku8PlORwg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Nachforderung: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 6 ;
+.
+prom-bpr-instances:nachforderung_aufforderung_zu_pruefung_und_stellun_1op7EoOyRqGfWL7Qxcwktw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Nachforderung: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:nachforderung_aufforderung_zu_pruefung_und_stellun_5p8HUkrsTlS25enHFkXzZg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Nachforderung: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:nachforderung_aufforderung_zu_pruefung_und_stellun_8jm_M3OgRiOPi_ciygjPnA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Nachforderung: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:nachforderung_aufforderung_zu_pruefung_und_stellun_FIgYjh2_R-mGMejM5F0GAQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Nachforderung: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:nachforderung_aufforderung_zu_pruefung_und_stellun_GihP9ZdDQuWaHU5TODs3pw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Nachforderung: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:nachforderung_aufforderung_zu_pruefung_und_stellun_Lg6z6ja-Qt6joek6d1Oyuw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Nachforderung: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 4 ;
+.
+prom-bpr-instances:nachforderung_aufforderung_zu_pruefung_und_stellun_MK8RT3RzRBmAkRoUfEiHNA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Nachforderung: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:nachforderung_aufforderung_zu_pruefung_und_stellun_MmbvpVkIRGCnruOxVlx4JA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Nachforderung: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:nachforderung_aufforderung_zu_pruefung_und_stellun_R5OFK-cwRBeDWUjLg3jOKw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Nachforderung: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:nachforderung_aufforderung_zu_pruefung_und_stellun_SwViz_ECSc6S3f2hzqq4DA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Nachforderung: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 4 ;
+.
+prom-bpr-instances:nachforderung_aufforderung_zu_pruefung_und_stellun_Uu7S6vTQSmWlMb1nj-pOBg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Nachforderung: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:nachforderung_aufforderung_zu_pruefung_und_stellun_W4-M4013R_2mN_G2AipkXg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Nachforderung: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:nachforderung_aufforderung_zu_pruefung_und_stellun_X2qOnk-pTlypuNVuiqU_BQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Nachforderung: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 6 ;
+.
+prom-bpr-instances:nachforderung_aufforderung_zu_pruefung_und_stellun__U_sQehBQCat_wZma81Fcg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Nachforderung: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 4 ;
+.
+prom-bpr-instances:nachforderung_aufforderung_zu_pruefung_und_stellun_cw2d2NNDRWCpVTu-0eryVA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Nachforderung: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:nachforderung_aufforderung_zu_pruefung_und_stellun_drPvtpW8QSKD0Eyk5es8kQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Nachforderung: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:nachforderung_aufforderung_zu_pruefung_und_stellun_gby1W1fBRX6HhFrbJ0lR3A
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Nachforderung: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:nachforderung_aufforderung_zu_pruefung_und_stellun_lmvWFcQEQXqKc5HCcgruCw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Nachforderung: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:nachforderung_aufforderung_zu_pruefung_und_stellun_oLUK_LWOT0uBrAs-qjrB0w
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Nachforderung: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:nachforderung_aufforderung_zu_pruefung_und_stellun_pR6PBLoqQieJ4Pktyfre_A
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Nachforderung: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 4 ;
+.
+prom-bpr-instances:status_aendern_3jM1oSY2RHilKxJbQRgFpA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Status ändern"@de ;
+  prom-bpr:occurrences 46 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_-M_AdWVqTDWLqE1cfrFfSQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_0wVSKhp2RUS96z_vmIA3Gw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 6 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_2Zn5q_EmRsWVi0Ko0QFs0Q
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 4 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_2fOfFAJHRx6lJw0Q0DNLBA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_2vwS620HSPe2nuH18Mr_7g
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_477DurPnS9eKNckfO2MiEg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_4XpcHGksSM6eTbDH9yHndA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_5JiAwitXSzus1TqI44DIXg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_5MUUQc0eR-2dZN_11i-lgA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_5P8n6X7GQmyCipkuMw1VYg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_5mzPizk7TF65xUbm11eCmQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_5t5voAKOTJ6QE3bwQn4Dgw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 4 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_6JlDJdnVSz-qHzN5m1u6uQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_6NTwWQvZST6bSpnoyv-6YA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_6ZkMIXsOSk-J2gjWZJTBJg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_70ahyB4aQdKXy9d8cP5LBw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 4 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_72PoO8EtTeSv3EZyS-OYmA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_7cY2u9UXRMWRsUFu1DFwvw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_7mzNoHlGS1C9g7oCO3suZQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_7nlP8B03Soq8Tx0iP-drqw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_7qgtSGcaRb-8CSrGM4YNzg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_7rGrtPSBRKijufwedwhvXQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_8-opGM4USjmjQ4RSeb88cA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_8RWMG2DMTpepZY73bwcGZA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_8VF7o7UUSn-i1PydmDVi4Q
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 6 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_8kTSAl-GS2KdkbZ70j4s2A
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_8rUQaAPdSZuW7kntINWRQg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_92HvFchoSDqX5Nc2mbLHRQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_9Ky5zWOSQ5-67euym3UTLQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 4 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_A0dQ5WsrSAWpmllG1GQo6w
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_A6WJVhSqSFGXq1tpoy4oKg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_AGm7gVX1QAmHNujmR6VkJg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_AR9_xFUSTAKww4i7Yh0rxQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_A_nRqxQJTM6yXmq1RGabgw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_BKggOhgpTrKNqtBnPtbm5A
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_BnRi76tKRDmOMR3KrkIung
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_BnxWCMh7Rc-2hetcxCiZ8A
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_C9lRhdBFRw6psq5XEg_Qgg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 4 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_CIx7RHfESrmXGn52gMcwVQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_CcspZRgtTVS3l60mHgtYMQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_D27VHoSRRye_7JKhaspbAA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_DcAlLS6bQP6Ypxv0aBK9WA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_DmzuPaxKSxeVdo91XhFmqw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_E1U2bwPARY-wFMWQazYH_w
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_EiQ58ej8RGG5W3y-BmbpXQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_F40tJaPrS2qiJN_BLSOYXA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 4 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_FCtPcYofRPSncWXsq8HLBg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 4 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_FIQJkAibSFGpoKqu37_k7w
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_FWMw1J_eQJqQBNg4sLZB7A
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_Ffj0QryASHGAS6aRJsbWKw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_GXtq9L7wRpedqYoZ0EHdgg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_GbezmmuBTu6UsgWbx-gC7w
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_GitjcHFMSDWSBnktoBjx3Q
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_GoVuf6NhSNyFVOjvg89xLw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_H8-8S-p2T1qnYy7xrhQYlw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_HP3Tv9GPSsiMSxJwTs4lHw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_HlqUpCsxQiOwkv8HgBfHpg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_Ho_tsdcFStS2FSjkvFTeag
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_Ij035GoxQSWQNTNE_8fo5w
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_IjgRF9PxSLivfYrskiSvJg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_JECUGw_USMK0CCyEnZt0Fg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 4 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_JhnlqOGiSLKHMOcxoKgPfg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 4 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_K2G77a55SiGbBooKe_ZNHg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_K6-5QD_GR6mRbTmqDeDB1Q
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_KGqkkaO-T8-xqN37_0klnw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 4 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_KX3VP1RJR4yHqfNqqFNqyQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_KiOZriozSjWNTdaWGvoUUw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_KqvN37c4T_itlzxO44gkXw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 6 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_KuZ6wgTfQs-wctTLvkVvWQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 4 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_LZu1f_alS9iXrjpHPP83Kw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_LfwS1PtgQ7KS2a-gdA3asQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_LhvNmxxJQiKUdVr8TMrYkw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_LhvpWATMQHiboE9YNF6DPw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_M-DGCSCsS5CfQS9s0H7RrA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_M0Xb-9WdQJq8hWGA2gvgJg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 8 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_MuoEKLugRGy-YTj_ZkYgxQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_N33auvYZSF26XqzIjT-BbA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 4 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_NdB4GphERG29P3QrFiOX7g
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_Nms8mGYXRaehnEt4kseeLA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_OWSVnySlR_aaLwm077ja9Q
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_OfTS13EYQZenOZi2rAUs3w
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_OhUcqWpQRMG-fJqVmDcPoQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_QSbX9TyXQ62GU5rDzz-0ZQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_QXc_kfc_S9uG5DNlb5w1oA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 4 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_QiCzefQWTq-T0uGU16cfpw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_R5KhYG6xTA2JsnTuEcRS5Q
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_RrM_OKxBRqG-ilMRprvEew
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_RxSfWfgkQDKYtV080bOekQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_SJSRX5-qS8qwfHlnC_uTDQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_SKRXQLM4SJKk6-fOeHotkQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 4 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_SQkWi87JSn6a11Zoj0M-Jg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_SfBJj3dHSLOkzKuN4MYmlw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_Swl1qj1PQ_uQJrlqRWdgVg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_TlNj-X9VQDG5G7a6vVrPtw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 4 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_TqZ-7foSQZeN7ywB1SZlHw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 4 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_Ts0rfZTwR12b4-CPevjg8Q
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 4 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_UwQCYX8xRcm9J3U6IuQpNQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_VSnCtsv2TfCez3FAtgaheA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_VU3RcFHbQY-SxsJqqZyhkQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 4 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_VsieHPgERyKODECN26hkmg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_WJOKQamZQWmy4du9oWsRjw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_Wo-ohOCoRKK9p1ZR9R_GrQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_WxqDlvn4TDeO4X2FU9FFxw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_XCQfkog1Tg-JAECajnCZsQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 4 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_XyCBgl5IRLyfwGIJqahnvQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_YWSp_OtpQnSzE4V8kbkjBA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_Zep8ud-FSbetF73W4Hyg6A
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun__b9HBGyYQe6A7lvBwolYdw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun__ymkxrY-SHqPxduthUHE4w
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_a0dNFmFjS3S2jMpjPWv51A
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_bAOw9l8MSWWXkWiejwsVAw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_bKdZ0EUwSym0NjQDgN18sg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_biRhOGZlR9Oo3MIXiap-_g
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 4 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_cFhJDmtRShyFcB9byqKYew
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 4 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_cao0anBnQS63MqI6colRfw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_clfXsNojRX2IAwZiCCcbKA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_d0AVLAEpSEaLV7y7FHOSRQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_dnk-iCDNRuKqB4_Dg2CJog
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 4 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_e906IuH4TX-wXf2E558_aw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 4 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_eHV505itRh2qOZ5X3sN0wA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_egrqX96gTh6IXAmJk4EhqQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_fmDEjW6UTme6mY3FE6NdCw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_fsvAf6oYQy6d88PQn7pK3g
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_g7B2_CDZQmWCvliFF0j9cQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 4 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_g90n_yhRR5icXVhqpvktmg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_gXeKCjl1SfykpRgYd2X04A
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 4 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_gfoyYzYfQCqTz1AxNaDyGw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_hXb-TMRMTTeMYZuGJksZMg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 4 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_hpNMqCxJRoCzeDTS3XGMXw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_i6p1TDEIQA2lXVtimO_K5Q
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_iE6IGvKHRWyJ2vJF-IiB0A
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_iVrC_8FdSQKg-iHJbleRoA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 4 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_imJ4giCwQH6u5LIm4fJrKA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_jGWDF-uMQUalPmccqQ7kiw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_jrZHG9DFRXuPm56X8Y2zVg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_k8eGl6LPQBmenyk00bl0qg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_kZZv6cNqTlmwGTn4FSeSpg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_kc7TU-NSTnyBn9I3DwXw-w
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_kcq-GImoQC-V2n8OA-suHw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_kcrKDSNlQnOPD85JfscCQQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_lbm4S-4YS1SMBdQJnq5ktg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_mE7M4TilRIOAoFqEvQC4Tw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_mpSHX8lESY6-ioXNEZLnNw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_n5W8_4bCRDGohQwOvYyqYg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_o3vqu5nsSGKvSaPTFgL3Pg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_o4bFLQu2Rael_Qva9BoZ4Q
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_oCT17RorTP2Rl4dkbndAyg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_oTp7sOxeQlS_RxSzsS6RkQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_omq9mwXlRt28VybLPbvZcA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_ow0VTHDNRUexobtzjPNWrQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_owiL69rwRGqF4_uMC2BoNA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_p4CwUi43TeGBv_mLbC9S8g
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_pA3mOPWOS1CURYiW6Dyn-Q
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 6 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_pgbuFpODRP-mtL3t0T_xwA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 4 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_qDEduxJqQDi46aece1HnBA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_r-88cut6Rpi81qHJFqFE4Q
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_r903eSw9StWYOcoqdYa3Vw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 4 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_riC6XH6mRUGRIqQLzmQcQA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_sFkANUg2QRK7YNN4LpOkfw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_sya9CIR-TBiJGFQ20tTlaQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 4 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_tcABhf85QCCWXNH9v2tNMg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 4 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_tmJ7Qq-vTmS7oWkjO_x-4w
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 4 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_u-dYK_sPRbC9VAPlVIl6_Q
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_uduseCMGQwOx7dwmEia_SA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_vfcUaJmWQAClcqx0tjsvcQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_wAWcH0xQRZWOxCAZ8WTCgg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_wW4LdEuSSLiCO_CAia_vJQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_wh_KDKwDRB29GEvINBdTyg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_x7pzSUkCSUiewOdI6jBcXA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 4 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_xN6np2OiQ-O3ZrF2KfcfBA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_xSqkdbXsRXas_mWJ8o1F4g
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_xhB31_-xRLmseePKrLKCAA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 4 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_xvglYrmvS3q7ApSgDmJAjA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_xzc_ebrxRqqdBvmDCDEFjA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_yrAdaSCHQuqNaGugxt6mrg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 4 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_z8bBWqC2QK6GwvtscEAmAQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_z_9J4FtWQjSYcGDKyNf04w
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_aufforderung_zu_pruefung_und_stellun_zcwOPZ7xRyKNekKXYyvErA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Aufforderung zu Prüfung und Stellun ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_beteiligung_toeb_anfordern_bremenpo_ODlHu-Q2TO-E_TsOpwDViQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Beteiligung TöB anfordern (Bremenpo ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_beteiligung_toeb_anfordern_gewerbea_EB_dlHAfSFqbIfwjSYqYNg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Beteiligung TöB anfordern (Gewerbea ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_beteiligung_toeb_anfordern_sukw_abt_MFF8TNhkTJOVEcx4c6OfNQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Beteiligung TöB anfordern (SUKW Abt ***"@de ;
+  prom-bpr:occurrences 6 ;
+.
+prom-bpr-instances:stellungnahme_beteiligung_toeb_anfordern_sukw_ref_cjMT6J0ySm60RUQFfFfHPQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme: Beteiligung TöB anfordern (SUKW Ref ***"@de ;
+  prom-bpr:occurrences 2 ;
+.
+prom-bpr-instances:stellungnahme_und_nachbesserung_uebersenden_hbA-O1EeRpe0tslbLEDVMg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Stellungnahme und Nachbesserung übersenden"@de ;
+  prom-bpr:occurrences 76 ;
+.
+prom-bpr-instances:vermerk_einladung_im_servicekonto_angenommen_3J5Yw2PSQyq71mYa1fNXDA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Vermerk: \"Einladung im Servicekonto angenommen\""@de ;
+  prom-bpr:occurrences 28 ;
+.
+prom-bpr-instances:vermerk_einladung_im_servicekonto_entfernt_JfpAcIBOShKH16fUJLjRPA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Vermerk: \"Einladung im Servicekonto entfernt\""@de ;
+  prom-bpr:occurrences 4 ;
+.
+prom-bpr-instances:vorgangsbezogener_nachrichtenversand_servicebereic_UTs4aaS5SrCCD558PNvkeQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Vorgangsbezogener Nachrichtenversand Servicebereic ***"@de ;
+  prom-bpr:occurrences 350 ;
+.
+prom-bpr-instances:xbau_hochbau_2_3_1_nachricht_0300_ZF0m0qYDSMesB1jxh9UrOQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "XBau-Hochbau 2.3.1 Nachricht 0300"@de ;
+  prom-bpr:occurrences 124 ;
+.
+prom-bpr-instances:xbau_hochbau_2_3_1_nachricht_0302_JxVZ1qkAQxyifFRsaM-wlA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "XBau-Hochbau 2.3.1 Nachricht 0302"@de ;
+  prom-bpr:occurrences 28 ;
+.
+prom-bpr-instances:xbau_hochbau_2_4_0_1_nachricht_0205_ZvQvSUPITLueT-02rUT0Zg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "XBau-Hochbau 2.4.0.1 Nachricht 0205"@de ;
+  prom-bpr:occurrences 34 ;
+.
+prom-bpr-instances:xbau_hochbau_2_4_0_1_nachricht_0300_cuPgaPosSv6JcgOcUnWtiQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "XBau-Hochbau 2.4.0.1 Nachricht 0300"@de ;
+  prom-bpr:occurrences 518 ;
+.
+prom-bpr-instances:xbau_hochbau_2_4_0_1_nachricht_0302_-C9u-h_kTIac-MfjsYldNQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "XBau-Hochbau 2.4.0.1 Nachricht 0302"@de ;
+  prom-bpr:occurrences 34 ;
+.
+prom-bpr-instances:xbau_kernmodul_1_2_1_1_nachricht_1120_qrsi-T5aSaueNxTZwbe-mA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "XBau-Kernmodul 1.2.1.1 Nachricht 1120"@de ;
+  prom-bpr:occurrences 988 ;
+.
+prom-bpr-instances:xbau_kernmodul_1_2_1_1_nachricht_1121_XQpAJT9aTXiVfH5VM8IOKw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "XBau-Kernmodul 1.2.1.1 Nachricht 1121"@de ;
+  prom-bpr:occurrences 264 ;
+.
+prom-bpr-instances:xbau_kernmodul_1_2_1_1_nachricht_1141_a3zSw4xdTMK6a8Q7H-E_OQ
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "XBau-Kernmodul 1.2.1.1 Nachricht 1141"@de ;
+  prom-bpr:occurrences 388 ;
+.
+prom-bpr-instances:xbau_kernmodul_1_2_nachricht_1120_wlgJu-9aSJKg2lznkQsylw
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "XBau-Kernmodul 1.2 Nachricht 1120"@de ;
+  prom-bpr:occurrences 234 ;
+.
+prom-bpr-instances:xbau_kernmodul_1_2_nachricht_1121_HMs_f0abSwe33yhE5iewRg
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "XBau-Kernmodul 1.2 Nachricht 1121"@de ;
+  prom-bpr:occurrences 108 ;
+.
+prom-bpr-instances:xbau_kernmodul_1_2_nachricht_1141_u4tYcJZVQzyYvWpIHJK5sA
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "XBau-Kernmodul 1.2 Nachricht 1141"@de ;
+  prom-bpr:occurrences 104 ;
+.
+prom-bpr-instances:zustaendigkeit_zuweisen_QAYdHn8ySDGKYxSrVqbW1g
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Zuständigkeit zuweisen"@de ;
+  prom-bpr:occurrences 78 ;
+.
+prom-bpr-instances:zustellung_eines_schreibens_der_bauaufsichtsbehoerd_pk59i6eFRb2-sj93Prkl0w
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Zustellung eines Schreibens der Bauaufsichtsbehörd ***"@de ;
+  prom-bpr:occurrences 488 ;
+.
+prom-bpr-instances:zustellung_postfach_servicebereich_2SwEIZCoRCuyrijYl1mD4w
+  rdf:type owl:NamedIndividual ;
+  rdf:type prom-bpr:EventLogEntry ;
+  rdfs:label "Zustellung Postfach Servicebereich"@de ;
+  prom-bpr:occurrences 356 ;
+.

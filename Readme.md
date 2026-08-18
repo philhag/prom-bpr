@@ -20,8 +20,13 @@ Markdown documentation created by [pyLODE](http://github.com/rdflib/pyLODE) 2.4
   * [https://w3id.org/ontobpr](https://w3id.org/ontobpr)
 * **Ontology RDF**
   * RDF ([prom-bpr.ttl](turtle))
+
+* **License**
+  * The ontology is licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) license. See the [`LICENSE`](LICENSE) file.
+  
 ### Description
 <p>PROM-BPR provides a reference process model for building permit review processes, capturing the key activities, their sequence, and dependencies for implementing process mining approaches. Furthermore, it contains classes for representing event log entries, unclassified event log entries, and event log compounds. The prefix of the ontology is <code>prom-bpr:</code>. The process model consists of three main phases: <code>prom-bpr:A_1_PrePhase</code>, <code>prom-bpr:A_2_ReviewPhase</code>, and <code>prom-bpr:A_3_PostPhase</code>. The ontology extends <code>ontobpr:</code> and utilizes <code>prov:</code>.</p>
+
 
 ## Table of Contents
 1. [Classes](#classes)
