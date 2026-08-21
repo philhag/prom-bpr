@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- This file has been generated with the OpenXES library. It conforms -->
+<!-- to the XML serialization of the XES standard for log storage and -->
+<!-- management. -->
+<!-- XES standard version: 2.0 -->
+<!-- OpenXES library version: 2.28 -->
+<!-- OpenXES is available from http://www.openxes.org/ -->
+<log xes.version="2.0" xes.features="nested-attributes" openxes.version="2.28">
+	<extension name="Time" prefix="time" uri="http://www.xes-standard.org/time.xesext"/>
+	<extension name="Lifecycle" prefix="lifecycle" uri="http://www.xes-standard.org/lifecycle.xesext"/>
+	<extension name="Concept" prefix="concept" uri="http://www.xes-standard.org/concept.xesext"/>
+	<classifier name="Event Name" keys="concept:name"/>
+	<classifier name="(Event Name AND Lifecycle transition)" keys="concept:name lifecycle:transition"/>
+	<string key="concept:name" value="XES Event Log (filtered, 127 traces, 7576 events)"/>
+	<trace>
+		<string key="concept:name" value="040e3cc4-bbcd-47a0-8210-6d42f62b4c07"/>
+		<event>
+			<string key="processtype" value="type-anonymous-xbau"/>
+			<string key="eventid" value="2b7055b4-ba33-4e20-8a0d-78766c3cef56" />
+			<string key="starttime" value="yyyy-M-dTH:mm:ssXXX" />
+			<float key="resource" value="1153.0" />
+			<string key="concept:name" value="A_2_1_2_RegistrationOfApplication" />
+			<string key="lifecycle:transition" value="complete" />
+			<date key="time:timestamp" value="2025-02-25T10:36:15+00:00" />
+			<string key="prombpr:originalName" value="Aktenzeichen hinzufügen" />
+			<string key="prombpr:url" value="https://w3id.org/prom-bpr#A_2_1_2_RegistrationOfApplication" />
+		</event>
+	</trace>
+</log>

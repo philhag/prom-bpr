@@ -1,0 +1,38 @@
+@prefix sh:    <http://www.w3.org/ns/shacl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix prom:  <https://w3id.org/prom-bpr#> .
+
+
+prom:Shape_1
+    a sh:NodeShape ;
+    sh:targetClass prom:EventLogEntry ;
+    sh:rule [
+        a sh:TripleRule ;
+        sh:condition [
+            sh:property [
+                sh:path rdfs:label ;
+                sh:pattern "Aktenzeichen hinzufügen" ;
+                sh:flags "i" ;
+            ]
+        ] ;
+        sh:subject sh:this ;
+        sh:predicate rdf:type ;
+        sh:object <https://w3id.org/prom-bpr#A_2_1_2_RegistrationOfApplication> ;
+    ] .
+
+prom:Shape_2
+    a sh:NodeShape ;
+    sh:targetClass prom:EventLogEntry ;
+    sh:rule [
+        a sh:TripleRule ;
+        sh:condition [
+            sh:property [
+                sh:path rdfs:label ;
+                sh:hasValue "Aktenzeichen hinzufügen" ;
+            ]
+        ] ;
+        sh:subject sh:this ;
+        sh:predicate rdf:type ;
+        sh:object <https://w3id.org/prom-bpr#A_2_1_2_RegistrationOfApplication> ;
+    ] .
